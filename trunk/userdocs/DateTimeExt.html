@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: DateTimeExt</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<h1 class="unit">Unit DateTimeExt</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Uses">uses</a></td><td><a class="section"  href="#@Classes">Classes, Interfaces, Objects and Records</a></td><td><a class="section"  href="#@FuncsProcs">Functions and Procedures</a></td><td>Types</td><td><a class="section"  href="#@Constants">Constants</a></td><td>Variables</td></tr></table>
+<a name="@Description"></a><h2 class="description">Description</h2>
+<p>
+Date/Time conversion routines</p>
+<p>
+   
+
+<p>Copyright 1998, 2005 by Luis Caballero Martínez. All rights reserved. Released under a Mozilla Public License 1.1</p>
+<a name="@Uses"></a><h2 class="uses">uses</h2>
+<ul class="useslist"><li>SysUtils</li><li>Windows</li></ul><h2 class="overview">Overview</h2>
+<a name="@Classes"></a><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="DateTimeExt.TDateRange.html"><code>TDateRange</code></a></td>
+<td class="itemdesc">Helper class for use of date ranges as fields, function parameters, etc.</td>
+</tr>
+</table>
+<a name="@FuncsProcs"></a><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="DateTimeExt.html#UTCToLocal">UTCToLocal</a></b>(UTC: TDateTime): TDateTime;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="DateTimeExt.html#LocalToUTC">LocalToUTC</a></b>(Local: TDateTime): TDateTime;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="DateTimeExt.html#MySQLToDateTime">MySQLToDateTime</a></b>(MySQLDate: String): TDateTime;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="DateTimeExt.html#DateTimeToMySQL">DateTimeToMySQL</a></b>(DateTime: TDateTime): String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="DateTimeExt.html#UnixToDateTime">UnixToDateTime</a></b>(UnixDate: Cardinal): TDateTime;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="DateTimeExt.html#DateTimeToUnix">DateTimeToUnix</a></b>(DateTime: TDateTime): Cardinal;</code></td>
+</tr>
+</table>
+<a name="@Constants"></a><h3 class="summary">Constants</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a   href="DateTimeExt.html#sDateTooOld">sDateTooOld</a></b> = 'Can''t convert dates prior 1970';</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="DateTimeExt.html#UnixDateDelta">UnixDateDelta</a></b>: TDateTime = 25569.00;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="UTCToLocal"></a><code>function <b>UTCToLocal</b>(UTC: TDateTime): TDateTime;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns the local equivalent of a UTC DateTime</p>
+<p>
+ This function is accurate only in Windows NT; in Windows 95, 98 and ME it'll fail if the date to convert is in daylight saving range and the system's current is not or viceversa.
+
+<p>The bias of the fail will be the same as that between both date ranges p.e. if you are in Europe, the system's date is Dec. 28th and pass Aug. 18 to the function (or viceversa), the difference will be abs(CEST - CET)</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="LocalToUTC"></a><code>function <b>LocalToUTC</b>(Local: TDateTime): TDateTime;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns the UTC equivalent of a local DateTime</p>
+<p>
+ Accurate only on Windows NT systems. </p>
+<h6 class="description_section">See also</h6>
+<dl class="see_also">
+  <dt><a class="normal"  href="DateTimeExt.html#UTCToLocal">UTCToLocal</a></dt>
+  <dd>Returns the local equivalent of a UTC DateTime</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="MySQLToDateTime"></a><code>function <b>MySQLToDateTime</b>(MySQLDate: String): TDateTime;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns a Delphi TDateTime corresponding to a MySQL date/time string</p>
+<p>
+ This function can be used also with other date-string formats, but don't push it too far or it'll break down...</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="DateTimeToMySQL"></a><code>function <b>DateTimeToMySQL</b>(DateTime: TDateTime): String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Converts a TDateTime to a date/time string in MySQL format</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="UnixToDateTime"></a><code>function <b>UnixToDateTime</b>(UnixDate: Cardinal): TDateTime;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns a TDateTime equivalent to a Unix timestamp</p>
+<p>
+ This function depends on Delphi's internal represention of TDateTime.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="DateTimeToUnix"></a><code>function <b>DateTimeToUnix</b>(DateTime: TDateTime): Cardinal;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Converts a TDateTime into a Unix timestamp</p>
+<p>
+ This function depends on Delphi's internal represention of TDateTime. </p>
+<h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>EConvertError</code></dt>
+<dd>if trying to convert a date prior Jan, 1, 1970</dd>
+</dl>
+</td></tr>
+</table>
+<h3 class="detail">Constants</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="sDateTooOld"></a><code><b>sDateTooOld</b> = 'Can''t convert dates prior 1970';</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Error string used when DateTimeToUnix raises EConvertError</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="UnixDateDelta"></a><code><b>UnixDateDelta</b>: TDateTime = 25569.00;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+TDateTime equivalent of a &quot;zero&quot; Unix timestamp.</p>
+<p>
+ It was calculated with <code>EncodeDate(1970, 01, 01)</code></p>
+</td></tr>
+</table>
+<h2 class="authors">Author</h2>
+<ul class="authors">
+<li>Luis Caballero &lt;<a   href="mailto:luiscamar@users.sourceforge.net">luiscamar@users.sourceforge.net</a>&gt;</li>
+</ul>
+<h2 class="created">Created</h2>
+<p>
+1998-05-27
+</p>
+<h2 class="modified">Last Modified</h2>
+<p>
+2007-01-18
+</p>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>

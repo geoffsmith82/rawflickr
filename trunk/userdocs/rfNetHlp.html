@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: rfNetHlp</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<h1 class="unit">Unit rfNetHlp</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Uses">uses</a></td><td><a class="section"  href="#@Classes">Classes, Interfaces, Objects and Records</a></td><td><a class="section"  href="#@FuncsProcs">Functions and Procedures</a></td><td><a class="section"  href="#@Types">Types</a></td><td>Constants</td><td>Variables</td></tr></table>
+<a name="@Description"></a><h2 class="description">Description</h2>
+<p>
+Internet Helper for Rawflickr</p>
+<p>
+   
+
+<p>This unit serves to isolates the main rawflickr.pas from the network lybrary used to actually access the Internet, the rationale being that thus the task of porting Rawflickr to other environments is eased.
+
+<p>Later versions may be implemented as an abstract class or a plugable architecture, but for now it's just a set of function calls extracted from my Network Extensions Library.
+
+<p><b>Credits:</b> </p>
+
+<ul class="paragraph_spacing">
+  <li><p>Internet Direct (Indy) version 9.0.18, <a  target="_parent" href="http://www.indyproject.org/">http://www.indyproject.org/</a></p></li>
+  <li><p>Synapse Release 36, <a  target="_parent" href="http://www.ararat.cz/synapse/">http://www.ararat.cz/synapse/</a></p></li>
+</ul>
+
+<p> <b>Important Note</b>: Synapse support has been temporarily taken away; it'll be reintroduced in one of the next releseases. If you can't wait, feel free to introduce it yourself and pass it back to the source tree (contact me for details)</p>
+<a name="@Uses"></a><h2 class="uses">uses</h2>
+<ul class="useslist"><li>Classes</li><li>IdHTTP</li><li>IdMultipartFormData</li><li>SysUtils</li></ul><h2 class="overview">Overview</h2>
+<a name="@Classes"></a><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="rfNetHlp.EDownloadError.html"><code>EDownloadError</code></a></td>
+<td class="itemdesc">&nbsp;</td>
+</tr>
+</table>
+<a name="@FuncsProcs"></a><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="rfNetHlp.html#LaunchBrowser">LaunchBrowser</a></b>(URL: WideString): Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="rfNetHlp.html#DownloadURL">DownloadURL</a></b>(url: String; DestStream: TStream; Params: TStrings = nil; Method: <a   href="rfNetHlp.html#TReqMethod">TReqMethod</a> = rqPost): boolean; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="rfNetHlp.html#DownloadURL">DownloadURL</a></b>(url: String; DestFileName: String; Params: TStrings = nil; Method: <a   href="rfNetHlp.html#TReqMethod">TReqMethod</a> = rqPost): boolean; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="rfNetHlp.html#WebMethodCall">WebMethodCall</a></b>(const BaseURL: String; Params: TStrings; Method: <a   href="rfNetHlp.html#TReqMethod">TReqMethod</a> = rqPost): String; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="rfNetHlp.html#WebMethodCall">WebMethodCall</a></b>(const BaseURL: String; Method: <a   href="rfNetHlp.html#TReqMethod">TReqMethod</a> = rqPost): String; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="rfNetHlp.html#WebMethodCall">WebMethodCall</a></b>(const BaseURL: String; FormData: TIdMultiPartFormDataStream): String; overload;</code></td>
+</tr>
+</table>
+<a name="@Types"></a><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a   href="rfNetHlp.html#TReqMethod">TReqMethod</a></b> = (...);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="LaunchBrowser"></a><code>function <b>LaunchBrowser</b>(URL: WideString): Boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Launchs the default browser and navigates to an URL.</p>
+<p>
+ This call is used by <a class="normal"  href="Rawflickr.html">rawflickr</a>, during the authorization process, to navigate to the &quot;login link&quot;.
+
+<p>The actual implementation depends of Win32's URL Moniker</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="DownloadURL"></a><code>function <b>DownloadURL</b>(url: String; DestStream: TStream; Params: TStrings = nil; Method: <a   href="rfNetHlp.html#TReqMethod">TReqMethod</a> = rqPost): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Download a web document into a stream via HTTP</p>
+<p>
+      </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>url</dt>
+<dd>URI of the file to retrieve.</dd>
+<dt>DestStream</dt>
+<dd>Destination stream.</dd>
+<dt>Params</dt>
+<dd>Parameters to pass to the remote host.</dd>
+<dt>Method</dt>
+<dd>HTTP method to use for the request.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> on completion or <code>False</code> on error if no exception is raised.</p><h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>Exception</code></dt>
+<dd>The class of the exception depends of the underlying HTTP or streams implementations.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="DownloadURL"></a><code>function <b>DownloadURL</b>(url: String; DestFileName: String; Params: TStrings = nil; Method: <a   href="rfNetHlp.html#TReqMethod">TReqMethod</a> = rqPost): boolean; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Download a remote file to a local one via HTTP</p>
+<p>
+      </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>url</dt>
+<dd>URI of the file to retrieve.</dd>
+<dt>DestFileName</dt>
+<dd>Name of the destination local file.</dd>
+<dt>Params</dt>
+<dd>Parameters to pass to the remote host.</dd>
+<dt>Method</dt>
+<dd>HTTP method to use for the request.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> on completion or <code>False</code> on error if no exception is raised.</p><h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>Exception</code></dt>
+<dd>The class of the exception depends of the underlying HTTP, streams or filesystem implementations.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="WebMethodCall"></a><code>function <b>WebMethodCall</b>(const BaseURL: String; Params: TStrings; Method: <a   href="rfNetHlp.html#TReqMethod">TReqMethod</a> = rqPost): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calls an HTTP service&ndash;url-encoded params</p>
+<p>
+ This set of functions work as those of the <a class="normal"  href="rfNetHlp.html#DownloadURL">DownloadURL</a> group but return a string with the server's response, thus making it easier to feed it to a parser.
+
+<p>This variant executes the HTTP <code>Method</code> passing the parameters <code>Params</code> in url-encoded form.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="WebMethodCall"></a><code>function <b>WebMethodCall</b>(const BaseURL: String; Method: <a   href="rfNetHlp.html#TReqMethod">TReqMethod</a> = rqPost): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calls an HTTP service&ndash;w/out params</p>
+<p>
+ This set of functions work as those of the <a class="normal"  href="rfNetHlp.html#DownloadURL">DownloadURL</a> group but return a string with the server's response, thus making easier to feed it to a parser.
+
+<p>This variant executes the HTTP <code>Method</code> passing no parameters, unless already encoded by the user in <code>BaseURL</code>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="WebMethodCall"></a><code>function <b>WebMethodCall</b>(const BaseURL: String; FormData: TIdMultiPartFormDataStream): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calls an HTTP service&ndash;Multipart/Form-Data</p>
+<p>
+ This set of functions work as those of the <a class="normal"  href="rfNetHlp.html#DownloadURL">DownloadURL</a> group but return a string with the server's response, thus making easier to feed it to a parser.
+
+<p>This variant pass the HTTP Post parameters as a Multipart/Form-Data stream; it's used, generally, to upload a file to a web server.</p>
+</td></tr>
+</table>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TReqMethod"></a><code><b>TReqMethod</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Valid HTTP request methods</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+rqGet: </li>
+<li>
+rqPost: </li>
+<li>
+rqPut: </li>
+<li>
+rqHead: </li>
+<li>
+rqOther: </li>
+</ul>
+</td></tr>
+</table>
+<h2 class="authors">Author</h2>
+<ul class="authors">
+<li>Luis Caballero &lt;<a   href="mailto:luiscamar@users.sourceforge.net">luiscamar@users.sourceforge.net</a>&gt;</li>
+</ul>
+<h2 class="created">Created</h2>
+<p>
+2005-03
+</p>
+<h2 class="modified">Last Modified</h2>
+<p>
+2006-02
+</p>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:30</em>
+</span>
+</body></html>

@@ -1,0 +1,68 @@
+@html(
+<p style="text-align: center">
+<a href="#reqs">Requirements</a> &mdash; <a href="#install">Installation</a> &mdash; <a href="#license">License</a> &mdash; 
+<a href="#phome">Project's home</a></p>
+
+<p>This library defines a set of simple wrapper classes intended to interface easily with the Flickr&trade; web service through its published web API. Its structure resembles so closely the API definition&mdash;as found in the <a href="http://flickr.com/services/API/">documentation at Flickr&trade;</a>&mdash;that a call to the library can be visually mapped to an API call with little, if any, effort and changes made to the API can be incorporated to the library in no time.</p>
+
+<p>This version <b>1.2</b> of the the library wraps all the API calls known as of <b>April, 2008</b> and introduces some helper functions and records for common tasks and parameter passing, such as data type bidirectional converters and generic response parsers.</p>
+
+<p>This unit can be used in any kind of project but its main purpose is to serve in testing frameworks, <abbr title="quick'n'dirty">q&amp;d</abbr> utilities and hacks; should you need a higher abstraction level, it'll be probably better for you to use <a href="http://www.daremon.gr/flickr/">dFlickr</a> (by Dimitris Giannitsaros), wait to the release of my own <i>cooked</i><sup>*</sup> one or even use <b>RawFlickr</b> as a foundation for your own.</p>
+
+<h2 id="reqs">Requirements</h2>
+
+<p>This is a Delphi library, so it seems like a good idea to have some version of Delphi at hand. The development was made with a Delphi 5 Enterprise Edition over a Windows XP SP2 platform, but there is nothing that I know of to prevent you from using it in any other platform or Delphi version. If you do that, drop me a line; I'd like to hear about it. I'm working on Kylix and Freepascal versions; don't hesitate to join me, if you want it.</p>
+
+<p>Beyond Borland/Inprise's, I've used some of my own and third-party libraries. Mine, that should be inside the distribution package, are:
+<ul>
+<li><b>DateTimeExt.pas</b>: conversion routines for UTC and local date/time, and Unix timestamps and MySQL dates to/from TDateTime;</li>
+<li><b>StringsExt.pas</b>: provides lightweight task-specific classes to use instead of TStrings descendants;</li>
+<li><b>rfNetHlp.pas</b>: Internet helper routines for Rawflickr.</li>
+</ul>
+The third-party libraries are:
+<ul>
+<li><a href="http://www.fichtner.net/delphi/md5/">MD5.pas</a><span style="color: navy">*</span>, by Matthias Fichtner; <i>it's used in RAWFLICKR.PAS to calculate the signature for signed calls and can be replaced for almost any other equivalent</i>.</li>
+<li><a href="http://www.destructor.de/">LibXMLParser</a><span style="color: navy">*</span>, by Stefan Heymann; <i>it's used in RAWFLICKR.PAS for the tiny default parsers. It could be replaced even by simple string functions, but this way it's a bit more elegant</i>.</li>
+<li><a href="http://www.indyproject.org">Internet Direct (Indy) Version 9</a>, by the Indy Project team. <i>RawFlickr uses just but indirectly, through the few calls to NETEXT.PAS; thus, it can be replaced just by a new or modified version of those calls</i>. (to self: no longer true: see source)</li>
+</ul>
+<span style="color: navy">*</span>
+<span style="color: navy; font-size:small; font-style: italic">These libraries are freely re-distributable, so I've included them in the distribution to avoid the risk of introducing an incompatibility.</span></p>
+
+<p>There are very few places where these 3rd party libraries are used so it should be easy to get rid of or substitute them if needed.</p>
+
+<hr>
+<h2 id="install">Installation</h2>
+
+<p>Provided you have already installed Indy 9, there's no special process required; simply install it as you'd do with any other set of units: dump them anywhere and add the path to your <i>library path</i>.</p>
+
+<p>If you haven't them yet, unzip and do the same with <code>MD5.zip</code> and <code>xmlparser.zip</code>. LibXMLParser comes with some nifty components and packages for Delphi 4 to 7 to install them, but to use Rawflickr you only need to make sure that Delphi can find LibXMLParser.pas when needed.</p>
+
+<hr>
+<h2 id="license">License</h2>
+
+<p>Well, here comes the legalesse:</p>
+
+<p>The contents of my source file/-s are subject to the Mozilla Public License Version 1.1 (the "License"); you may not use this file except in compliance with the License. You can obtain a copy of the License at <a href="http://www.mozilla.org/MPL/">http://www.mozilla.org/MPL/</a></p>
+
+<p>Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.</p>
+
+<p>The Original Code covered by this license is <code>Rawflickr</code>, a Flickr API kit for Delphi first released in October 2005.</p>
+
+<p>The Initial Developer of the Original Code is Luis Caballero Martínez.</p>
+
+<p>Portions created by the Initial Developer are the copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.</p>
+
+<hr>
+<h2 id="phome">Project's home</h2>
+
+<p>The project's home address is: <a href="http://rawflickr.webhop.net/">http://rawflickr.webhop.net</a>. You'll find there the latest version, documentation, news, support, etc.</p>
+
+<p>You'll end up probably in <code>http://usuarios.lycos.es/rawflickr</code> (as of December 2006) but don't bookmark this address. Whatever the time it keeps there, the project  can be moved without a moment notice; the former link, however, will always take you to the correct server, wherever it is. That is, unless <a href="http://www.dyndns.com/">DynDNS</a> (where the global redirection is set up) goes out unexpectedly (or I <em>forget</em> to renew my subscription!)!</p>
+
+<p><b>Note - 2008</b>: This project is in the process of being transferred to <a href="http://code.google.com/p/rawflickr/">Google Code Hosting</a> and a <a href="http://rawflickr.blogspot.com">companion blog</a> has been already opened in <a href="http://www.blogger.com/">Blogger</a>. I'll probably move the web to <a href="http://pages.google.com/">Google Pages</a>, also. See? Things change...</p>
+<hr>
+<h2 id="phome">About this documentation</h2>
+<p>This documentation has been generated directly from the source with <a href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a>. While a huge effort has been made to make the documention as complete as possible, there might yet be some parts undocumented or (worse) with old nonsense marker-comments. My apologies for that but, after all, you can always go to the source, isn't it?</p>
+
+<h3 style="text-align: center">Happy coding!</h3>
+)

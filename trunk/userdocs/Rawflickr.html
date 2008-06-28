@@ -1,0 +1,1003 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<h1 class="unit">Unit Rawflickr</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Uses">uses</a></td><td><a class="section"  href="#@Classes">Classes, Interfaces, Objects and Records</a></td><td><a class="section"  href="#@FuncsProcs">Functions and Procedures</a></td><td><a class="section"  href="#@Types">Types</a></td><td><a class="section"  href="#@Constants">Constants</a></td><td>Variables</td></tr></table>
+<a name="@Description"></a><h2 class="description">Description</h2>
+<p>
+Basic (raw) wrapper interface to Flickr's REST API</p>
+<p>
+   
+
+<p>This unit contains a set of wrapper classes to interface with Flickr through the REST Flickr API. There is also limited support for interfacing with 23*, a european photo sharing site that uses a Flickr-like API; this feature, though, is in beta state yet so please, notify me about any bugs you may find.
+
+<p>More information in: </p>
+
+<ul class="paragraph_spacing">
+  <li><p>Flickr API:<br> <a  target="_parent" href="http://www.flickr.com/services/api/">http://www.flickr.com/services/api/</a></p></li>
+  <li><p>23 API Implementation notes:<br> <a  target="_parent" href="http://www.23hq.com/doc/api">http://www.23hq.com/doc/api</a></p></li>
+  <li><p>Rawflickr support:<br> <a  target="_parent" href="http://rawflickr.webhop.net">http://rawflickr.webhop.net</a></p></li>
+</ul>
+
+<p>
+
+<p><b>Maintainers:</b> </p>
+
+<ul class="paragraph_spacing">
+  <li><p>LCM : Luis Caballero &lt;rawflickr@lycos.es&gt;</p></li>
+</ul>
+
+<p> <b>Credits:</b> </p>
+
+<ul class="paragraph_spacing">
+  <li><p>MD5.pas, by Matthias Fichtner: <a  target="_parent" href="http://www.fichtner.net/delphi/md5/">http://www.fichtner.net/delphi/md5/</a></p></li>
+  <li><p>LibXMLParser, by Stefan Heymann: <a  target="_parent" href="http://www.destructor.de/">http://www.destructor.de/</a></p></li>
+  <li><p>Internet Direct (Indy) version 9.0: <a  target="_parent" href="http://www.indyproject.org">http://www.indyproject.org</a></p></li>
+</ul>
+
+<p></p>
+<a name="@Uses"></a><h2 class="uses">uses</h2>
+<ul class="useslist"><li>classes</li><li><a   href="DateTimeExt.html">DateTimeExt</a></li><li>dialogs</li><li>LibXMLParser</li><li>MD5</li><li><a   href="StringsExt.html">StringsExt</a></li><li>syncobjs</li><li>sysutils</li><li>windows</li></ul><h2 class="overview">Overview</h2>
+<a name="@Classes"></a><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TWebService.html"><code>TWebService</code></a></td>
+<td class="itemdesc">Part of the &quot;multi-services&quot; feature.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TBasicUser.html"><code>TBasicUser</code></a></td>
+<td class="itemdesc">Basic User Info</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TFlickr.html"><code>TFlickr</code></a></td>
+<td class="itemdesc">Base service class</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.EFlickrError.html"><code>EFlickrError</code></a></td>
+<td class="itemdesc">Base exception class for errors returned from the backend.</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.EFlickrBadResponse.html"><code>EFlickrBadResponse</code></a></td>
+<td class="itemdesc">Exception class for invalid response or unrecognised RSP status.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TRESTApi.html"><code>TRESTApi</code></a></td>
+<td class="itemdesc">Base REST API Implementation.</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TActivity.html"><code>TActivity</code></a></td>
+<td class="itemdesc">Implements flickr.activity.* methods</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.EFlickrAuthError.html"><code>EFlickrAuthError</code></a></td>
+<td class="itemdesc">Descendant of <a class="normal"  href="Rawflickr.EFlickrError.html">EFlickrError</a> used in <code>TAuth</code>.</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TAuth.html"><code>TAuth</code></a></td>
+<td class="itemdesc">Implements flickr.auth.* methods.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TBlogPhoto.html"><code>TBlogPhoto</code></a></td>
+<td class="itemdesc">Record used for <a class="normal"  href="Rawflickr.TBlogs.html#postPhoto">TBlogs.postPhoto</a></td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TBlogs.html"><code>TBlogs</code></a></td>
+<td class="itemdesc">Implements flickr.blogs.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TContacts.html"><code>TContacts</code></a></td>
+<td class="itemdesc">Implements flickr.contacts.*</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TPageSet.html"><code>TPageSet</code></a></td>
+<td class="itemdesc">Combines Flickr lists parameters <code>page</code> and <code>per_page</code></td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TXtraParams.html"><code>TXtraParams</code></a></td>
+<td class="itemdesc">Extra params used in photo-list's calls.</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TFavorites.html"><code>TFavorites</code></a></td>
+<td class="itemdesc">Implements flickr.favorites.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TGroups.html"><code>TGroups</code></a></td>
+<td class="itemdesc">Implements flickr.groups.*</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TPools.html"><code>TPools</code></a></td>
+<td class="itemdesc">Implements flickr.groups.pools.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TInterestingness.html"><code>TInterestingness</code></a></td>
+<td class="itemdesc">Implements flickr.interestingness.*</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TPeople.html"><code>TPeople</code></a></td>
+<td class="itemdesc">Implements flickr.people.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TSearchTerms.html"><code>TSearchTerms</code></a></td>
+<td class="itemdesc">Text, tags and machine tags record, for flickr.photos.search</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TBoundBox.html"><code>TBoundBox</code></a></td>
+<td class="itemdesc">Set of coordinates pairs that determine a geo bounding box</td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TGeoTerms.html"><code>TGeoTerms</code></a></td>
+<td class="itemdesc">Geo related search terms</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TContentFilter.html"><code>TContentFilter</code></a></td>
+<td class="itemdesc">Content related search terms</td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TPhotoSearchParams.html"><code>TPhotoSearchParams</code></a></td>
+<td class="itemdesc">Old-style TPhotos.search parameters record</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TPhotos.html"><code>TPhotos</code></a></td>
+<td class="itemdesc">Implements flickr.photos.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TComments.html"><code>TComments</code></a></td>
+<td class="itemdesc">Implements flickr.photos.comments.* and flickr.photosets.comments.*</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TGeoData.html"><code>TGeoData</code></a></td>
+<td class="itemdesc">Implements flickr.photos.geo.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TLicenses.html"><code>TLicenses</code></a></td>
+<td class="itemdesc">Implements flickr.photos.licenses.*</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold"  href="Rawflickr.TNoteRecord.html"><code>TNoteRecord</code></a></td>
+<td class="itemdesc">Used to pass note info to methods of <a class="normal"  href="Rawflickr.TNotes.html">TNotes</a></td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TNotes.html"><code>TNotes</code></a></td>
+<td class="itemdesc">Implements flickr.photos.notes.*</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TTransform.html"><code>TTransform</code></a></td>
+<td class="itemdesc">Implements flickr.photos.transform.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.EFlickrUploadError.html"><code>EFlickrUploadError</code></a></td>
+<td class="itemdesc"><a class="normal"  href="Rawflickr.EFlickrError.html">EFlickrError</a> descendant for upload errors</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TUploader.html"><code>TUploader</code></a></td>
+<td class="itemdesc">Implements flickr.photos.upload.* and the Photo Upload/Replace API</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TPhotosets.html"><code>TPhotosets</code></a></td>
+<td class="itemdesc">Implements flickr.photosets.*</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TPlaces.html"><code>TPlaces</code></a></td>
+<td class="itemdesc">Implements flickr.places.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TPrefs.html"><code>TPrefs</code></a></td>
+<td class="itemdesc">Implements flickr.prefs</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TReflection.html"><code>TReflection</code></a></td>
+<td class="itemdesc">Implements flickr.reflection.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TTags.html"><code>TTags</code></a></td>
+<td class="itemdesc">Implements flickr.tags.*</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TTest.html"><code>TTest</code></a></td>
+<td class="itemdesc">Implements flickr.test.*</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TUrls.html"><code>TUrls</code></a></td>
+<td class="itemdesc">@abstractImplements flickr.urls.*) All the calls in this class return static info, so they are good candidates for caching; you should cache, at least, the more frequently used info p.e.</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="Rawflickr.TFlickrEx.html"><code>TFlickrEx</code></a></td>
+<td class="itemdesc">Extended web service class</td>
+</tr>
+</table>
+<a name="@FuncsProcs"></a><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="Rawflickr.html#BuildXtraParams">BuildXtraParams</a></b>(extras: String=''; perPage: Integer = 0; Page: Integer = 0): <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="Rawflickr.html#BuildSearchParams">BuildSearchParams</a></b>(tags: String=''; tagMode: String=''; text: String=''; Uploaded: <a   href="DateTimeExt.TDateRange.html">TDateRange</a> = nil; Taken: <a   href="DateTimeExt.TDateRange.html">TDateRange</a> = nil; license: ShortInt = -1; privacy: <a   href="Rawflickr.html#TPrivacyFilter">TPrivacyFilter</a> = pfNone): <a   href="Rawflickr.TPhotoSearchParams.html">TPhotoSearchParams</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="Rawflickr.html#XMLToStrings">XMLToStrings</a></b>(const xml: String): TStrings;</code></td>
+</tr>
+</table>
+<a name="@Types"></a><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TServiceType">TServiceType</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TEndpoints">TEndpoints</a></b> = (...);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TSignOption">TSignOption</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#EFlickrErrorClass">EFlickrErrorClass</a></b> = class of <a   href="Rawflickr.EFlickrError.html">EFlickrError</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TPrivacyFilter">TPrivacyFilter</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TTagSearchMode">TTagSearchMode</a></b> = (...);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TGeoAccuracy">TGeoAccuracy</a></b> = 0..16;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TValidGeoFields">TValidGeoFields</a></b> = (...);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TContentType">TContentType</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TMediaType">TMediaType</a></b> = (...);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TSafetyLevel">TSafetyLevel</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TSortOrder">TSortOrder</a></b> = (...);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TDateKind">TDateKind</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TDateGranularity">TDateGranularity</a></b> = 0..10;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TVisible">TVisible</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TVisibility">TVisibility</a></b> = set of <a   href="Rawflickr.html#TVisible">TVisible</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TPermission">TPermission</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TPermissions">TPermissions</a></b> = set of <a   href="Rawflickr.html#TPermission">TPermission</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TLocPrivacy">TLocPrivacy</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TViewPerm">TViewPerm</a></b> = set of <a   href="Rawflickr.html#TLocPrivacy">TLocPrivacy</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TAuthReason">TAuthReason</a></b> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TAuthorizeEvent">TAuthorizeEvent</a></b> = procedure(Sender: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; LoginURL: String; CancelReason: <a   href="Rawflickr.html#TAuthReason">TAuthReason</a>; var Cancel: Boolean);</code></td>
+</tr>
+</table>
+<a name="@Constants"></a><h3 class="summary">Constants</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#Version">Version</a></b> = $100;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#ServiceNames">ServiceNames</a></b>: Array [stFlickr..stOther] of String = ('flickr', '23', 'other');</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#KnownBaseURI">KnownBaseURI</a></b>: array [stFlickr..stOther] of string =
+  ('http://api.flickr.com/', 'http://www.23hq.com/', '');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#EmptyID">EmptyID</a></b> = '';</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#AnyId">AnyId</a></b> = <a   href="Rawflickr.html#EmptyID">EmptyID</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#SelfId">SelfId</a></b> = <a   href="Rawflickr.html#EmptyID">EmptyID</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#DefPageSet">DefPageSet</a></b>: <a   href="Rawflickr.TPageSet.html">TPageSet</a> = (perpage: 0; page: 0);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#EmptyXtra">EmptyXtra</a></b>: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a> = (extras: ''; perpage: 0; page: 0);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#AllXtras">AllXtras</a></b> = 'license,date_upload,date_taken,owner_name,'+
+             'icon_server,original_format,last_update,geo,'+
+             'tags,machine_tags,o_dims,views,media';</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#FullXtras">FullXtras</a></b>: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a> = (extras: <a   href="Rawflickr.html#AllXtras">AllXtras</a>; perpage: 500; page: 0);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#TagModes">TagModes</a></b>: array[tmAny..tmOther] of String = ('any', 'all', '');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#MediaTypes">MediaTypes</a></b>: array[mediaDefault..mediaAll] of String = ('', 'photos',
+                                                         'videos', 'all');</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#SortOrderStr">SortOrderStr</a></b>: array[soPostedAsc..soRelevance] of String =
+    ('date-posted-asc', 'date-posted-desc',
+     'date-taken-asc', 'date-taken-desc',
+     'interestingness-asc', 'interestingness-desc',
+     'relevance');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#dgExact">dgExact</a></b> = 0;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#dgMonth">dgMonth</a></b> = 4;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#dgYear">dgYear</a></b>  = 6;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a   href="Rawflickr.html#sFBadResponse">sFBadResponse</a></b> = 'Unrecognised REST response status'#13#10'%s';</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="BuildXtraParams"></a><code>function <b>BuildXtraParams</b>(extras: String=''; perPage: Integer = 0; Page: Integer = 0): <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Build a TXtraParams record.</p>
+<p>
+ Use this function to build a <a class="normal"  href="Rawflickr.TXtraParams.html">TXtraParams</a> record suitable for most of the API calls that return lists. <b>Note</b> that <code>foo := BuildXtraParams</code> will make <code>foo</code> equal to the constant <a class="normal"  href="Rawflickr.html#EmptyXtra">EmptyXtra</a></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="BuildSearchParams"></a><code>function <b>BuildSearchParams</b>(tags: String=''; tagMode: String=''; text: String=''; Uploaded: <a   href="DateTimeExt.TDateRange.html">TDateRange</a> = nil; Taken: <a   href="DateTimeExt.TDateRange.html">TDateRange</a> = nil; license: ShortInt = -1; privacy: <a   href="Rawflickr.html#TPrivacyFilter">TPrivacyFilter</a> = pfNone): <a   href="Rawflickr.TPhotoSearchParams.html">TPhotoSearchParams</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Builds a TPhotoSearchParams record.</p>
+<p>
+ Use this function to build a <a class="normal"  href="Rawflickr.TPhotoSearchParams.html">TPhotoSearchParams</a> record.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="XMLToStrings"></a><code>function <b>XMLToStrings</b>(const xml: String): TStrings;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Simple XML reponse parser.</p>
+<p>
+ Converts the XML response to a kind of INI format. Note that this function returns an object that you must free once you're done with it. For an example of how this can be done see the implementation of <a class="normal"  href="Rawflickr.TRESTApi.html#ParseResponse">TRESTApi.ParseResponse</a>.</p>
+</td></tr>
+</table>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TServiceType"></a><code><b>TServiceType</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of <a class="normal"  href="Rawflickr.TWebService.html#ServiceType">TWebService.ServiceType</a></p>
+<p>
+ </p>
+<h6 class="description_section">See also</h6>
+<dl class="see_also">
+  <dt><a class="normal"  href="Rawflickr.TWebService.html">TWebService</a></dt>
+  <dd>Part of the &quot;multi-services&quot; feature.</dd>
+</dl>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+stFlickr: </li>
+<li>
+st23: </li>
+<li>
+stOther: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TEndpoints"></a><code><b>TEndpoints</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type used to index the array of endpoint's URLs.</p>
+<p>
+ </p>
+<h6 class="description_section">See also</h6>
+<dl class="see_also">
+  <dt><a class="normal"  href="Rawflickr.TWebService.html#Endpoint">TWebService.Endpoint</a></dt>
+  <dd>Array of endpoint URIs relative to <a class="normal"  href="Rawflickr.TWebService.html#BaseURI">BaseURI</a></dd>
+</dl>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+epBaseRPC: </li>
+<li>
+epBaseSOAP: </li>
+<li>
+epBaseREST: </li>
+<li>
+epUpload: </li>
+<li>
+epReplace: </li>
+<li>
+epAuth: </li>
+<li>
+epLogout: </li>
+<li>
+epMethod: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TSignOption"></a><code><b>TSignOption</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Enumeration used in TRESTApi constructor.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+sgnRequired: </li>
+<li>
+sgnAlways: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="EFlickrErrorClass"></a><code><b>EFlickrErrorClass</b> = class of <a   href="Rawflickr.EFlickrError.html">EFlickrError</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Class reference to <a class="normal"  href="Rawflickr.EFlickrError.html">EFlickrError</a> and descendants.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TPrivacyFilter"></a><code><b>TPrivacyFilter</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;<h6 class="description_section">Values</h6>
+<ul>
+<li>
+pfNone: </li>
+<li>
+pfPublic: </li>
+<li>
+pfFriends: </li>
+<li>
+pfFamily: </li>
+<li>
+pfFriendsFamily: </li>
+<li>
+pfPrivate: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TTagSearchMode"></a><code><b>TTagSearchMode</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Tags and machine tags search modes.</p>
+<p>
+ </p>
+<h6 class="description_section">See also</h6>
+<dl class="see_also">
+  <dt><a class="normal"  href="Rawflickr.html#TagModes">TagModes</a></dt>
+  <dd><a class="normal"  href="Rawflickr.html#TTagSearchMode">TTagSearchMode</a> lookup strings</dd>
+</dl>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+tmAny: </li>
+<li>
+tmAll: </li>
+<li>
+tmOther: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TGeoAccuracy"></a><code><b>TGeoAccuracy</b> = 0..16;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Accuracy level of location information</p>
+<p>
+ The range 1..16 is Flickr's current range, meaning: </p>
+
+<ul class="paragraph_spacing">
+  <li><p>World level is 1</p></li>
+  <li><p>Country is &tilde;3</p></li>
+  <li><p>Region is &tilde;6</p></li>
+  <li><p>City is &tilde;11</p></li>
+  <li><p>Street is &tilde;16</p></li>
+</ul>
+
+<p> while &quot;0&quot; (zero) represents an &quot;unspecified&quot; value</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TValidGeoFields"></a><code><b>TValidGeoFields</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;<h6 class="description_section">Values</h6>
+<ul>
+<li>
+gfNone: </li>
+<li>
+gfBbox: </li>
+<li>
+gfPlaces: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TContentType"></a><code><b>TContentType</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Content types</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+ctNone: </li>
+<li>
+ctPhoto: </li>
+<li>
+ctScreen: </li>
+<li>
+ctOther: </li>
+<li>
+ctPhotoScreen: </li>
+<li>
+ctScreenOther: </li>
+<li>
+ctPhotoOther: </li>
+<li>
+ctAll: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TMediaType"></a><code><b>TMediaType</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Media types</p>
+<p>
+ </p>
+
+<ul class="paragraph_spacing">
+  <li><p>mediaDefault, use Flickr's default.</p></li>
+  <li><p>mediaStill, for the traditional media: photos, drawings, etc.</p></li>
+  <li><p>mediaMotion, for the &quot;video&quot; media.</p></li>
+  <li><p>mediaAll, for both.</p></li>
+</ul>
+
+<p></p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+mediaDefault: </li>
+<li>
+mediaStill: </li>
+<li>
+mediaMotion: </li>
+<li>
+mediaAll: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TSafetyLevel"></a><code><b>TSafetyLevel</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Safety level for any type of content</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+slIgnore: </li>
+<li>
+slSafe: </li>
+<li>
+slModerate: </li>
+<li>
+slRestricted: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TSortOrder"></a><code><b>TSortOrder</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of the &quot;sort&quot; parameter passed to methods that return a list. </p>
+<h6 class="description_section">See also</h6>
+<dl class="see_also">
+  <dt><a class="normal"  href="Rawflickr.html#SortOrderStr">SortOrderStr</a></dt>
+  <dd><a class="normal"  href="Rawflickr.html#TSortOrder">TSortOrder</a> lookup strings</dd>
+</dl>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+soDefault: </li>
+<li>
+soPostedAsc: </li>
+<li>
+soPostedDesc: </li>
+<li>
+soTakenAsc: </li>
+<li>
+soTakenDesc: </li>
+<li>
+soInterestAsc: </li>
+<li>
+soInterestDesc: </li>
+<li>
+soRelevance: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TDateKind"></a><code><b>TDateKind</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Kind of date/time requested or returned.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+dkTaken: </li>
+<li>
+dkPosted: </li>
+<li>
+dkUpdated: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TDateGranularity"></a><code><b>TDateGranularity</b> = 0..10;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Accuracy level of a date/time. At the date of this writing there are only three valid values, (see the constants dgExact, dgMonth and dgYear); but according to Flickr docs (see <a  target="_parent" href="http://www.flickr.com/services/api/misc.dates.html">http://www.flickr.com/services/api/misc.dates.html</a> <blockquote><em>In the future, additional granularities may be added,
+   so for future compatability you might want to build you application to
+   accept any number between 0 and 10 for the granularity.</em><br></blockquote></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TVisible"></a><code><b>TVisible</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;<h6 class="description_section">Values</h6>
+<ul>
+<li>
+toPublic: </li>
+<li>
+toFriends: </li>
+<li>
+toFamily: </li>
+<li>
+toPrivate: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TVisibility"></a><code><b>TVisibility</b> = set of <a   href="Rawflickr.html#TVisible">TVisible</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TPermission"></a><code><b>TPermission</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;<h6 class="description_section">Values</h6>
+<ul>
+<li>
+permOwner: </li>
+<li>
+permFriendsFamily: </li>
+<li>
+permContacts: </li>
+<li>
+permPublic: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TPermissions"></a><code><b>TPermissions</b> = set of <a   href="Rawflickr.html#TPermission">TPermission</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TLocPrivacy"></a><code><b>TLocPrivacy</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;<h6 class="description_section">Values</h6>
+<ul>
+<li>
+lpPublic: </li>
+<li>
+lpContacts: </li>
+<li>
+lpFriends: </li>
+<li>
+lpFamily: </li>
+<li>
+lpPrivate: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TViewPerm"></a><code><b>TViewPerm</b> = set of <a   href="Rawflickr.html#TLocPrivacy">TLocPrivacy</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TAuthReason"></a><code><b>TAuthReason</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Reason why a new authentication is needed</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+arNoToken: </li>
+<li>
+arLevelPromotion: </li>
+<li>
+arInvalidLoginOrToken: </li>
+<li>
+arOther: </li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TAuthorizeEvent"></a><code><b>TAuthorizeEvent</b> = procedure(Sender: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; LoginURL: String; CancelReason: <a   href="Rawflickr.html#TAuthReason">TAuthReason</a>; var Cancel: Boolean);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of the <a class="normal"  href="Rawflickr.TFlickrEx.html#OnAuthorize">TFlickrEx.OnAuthorize</a> event.</p>
+</td></tr>
+</table>
+<h3 class="detail">Constants</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Version"></a><code><b>Version</b> = $100;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Version of the library</p>
+<p>
+ Contrary to what is considered &quot;standard&quot;, version &quot;100&quot; (1.0.0) is both &quot;development&quot; and &quot;stable&quot; (and beta, gamma, etc. ;-)) Should you need it, compare the lastmod date to know if you have the latest.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ServiceNames"></a><code><b>ServiceNames</b>: Array [stFlickr..stOther] of String = ('flickr', '23', 'other');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Services' names referred to by <a class="normal"  href="Rawflickr.TFlickr.html#Service">TFlickr.Service</a></p>
+<p>
+ Do note that due to the change of the type of <a class="normal"  href="Rawflickr.TFlickr.html#Service">TFlickr.Service</a>, you must now index this array with a <a class="normal"  href="Rawflickr.html#TServiceType">TServiceType</a> variable.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="KnownBaseURI"></a><code><b>KnownBaseURI</b>: array [stFlickr..stOther] of string =
+  ('http://api.flickr.com/', 'http://www.23hq.com/', '');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Base URI of the known services API endpoints.</p>
+<p>
+ These URIs are used to set the default <a class="normal"  href="Rawflickr.TWebService.html#BaseURI">TWebService.BaseURI</a> after changing <a class="normal"  href="Rawflickr.TWebService.html#ServiceType">TWebService.ServiceType</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="EmptyID"></a><code><b>EmptyID</b> = '';</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Semantic 'no id'</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="AnyId"></a><code><b>AnyId</b> = <a   href="Rawflickr.html#EmptyID">EmptyID</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Semantic 'anyone' id</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SelfId"></a><code><b>SelfId</b> = <a   href="Rawflickr.html#EmptyID">EmptyID</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Semantic 'owner' id</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="DefPageSet"></a><code><b>DefPageSet</b>: <a   href="Rawflickr.TPageSet.html">TPageSet</a> = (perpage: 0; page: 0);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Default <a class="normal"  href="Rawflickr.TPageSet.html">TPageSet</a>.</p>
+<p>
+ Means &quot;let Flickr decide how many items to return.&quot; For 'normal' photolists it'll be 100, but other lists return by default as many as 500 (p.e. flickr.photosets.getPhotos)</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="EmptyXtra"></a><code><b>EmptyXtra</b>: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a> = (extras: ''; perpage: 0; page: 0);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Default <a class="normal"  href="Rawflickr.TXtraParams.html">TXtraParams</a></p>
+<p>
+ No extra options passed; default pagination.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="AllXtras"></a><code><b>AllXtras</b> = 'license,date_upload,date_taken,owner_name,'+
+             'icon_server,original_format,last_update,geo,'+
+             'tags,machine_tags,o_dims,views,media';</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+All known 'extras' values.</p>
+<p>
+ Up to date as of 2008-04-09</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FullXtras"></a><code><b>FullXtras</b>: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a> = (extras: <a   href="Rawflickr.html#AllXtras">AllXtras</a>; perpage: 500; page: 0);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal"  href="Rawflickr.TXtraParams.html">TXtraParams</a> set to retrieve the richest response available</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TagModes"></a><code><b>TagModes</b>: array[tmAny..tmOther] of String = ('any', 'all', '');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal"  href="Rawflickr.html#TTagSearchMode">TTagSearchMode</a> lookup strings</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="MediaTypes"></a><code><b>MediaTypes</b>: array[mediaDefault..mediaAll] of String = ('', 'photos',
+                                                         'videos', 'all');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal"  href="Rawflickr.html#TMediaType">TMediaType</a> lookup strings</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SortOrderStr"></a><code><b>SortOrderStr</b>: array[soPostedAsc..soRelevance] of String =
+    ('date-posted-asc', 'date-posted-desc',
+     'date-taken-asc', 'date-taken-desc',
+     'interestingness-asc', 'interestingness-desc',
+     'relevance');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal"  href="Rawflickr.html#TSortOrder">TSortOrder</a> lookup strings</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="dgExact"></a><code><b>dgExact</b> = 0;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal"  href="Rawflickr.html#TDateGranularity">TDateGranularity</a>: Exact date</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="dgMonth"></a><code><b>dgMonth</b> = 4;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal"  href="Rawflickr.html#TDateGranularity">TDateGranularity</a>: Known month/year, e.g. &quot;August, 1997&quot;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="dgYear"></a><code><b>dgYear</b>  = 6;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal"  href="Rawflickr.html#TDateGranularity">TDateGranularity</a>: Known year; e.g. &quot;sometime in 2004&quot;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="sFBadResponse"></a><code><b>sFBadResponse</b> = 'Unrecognised REST response status'#13#10'%s';</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<h2 class="authors">Author</h2>
+<ul class="authors">
+<li>Luis Caballero &lt;<a   href="mailto:luiscamar@users.sourceforge.net">luiscamar@users.sourceforge.net</a>&gt;</li>
+</ul>
+<h2 class="created">Created</h2>
+<p>
+2005-09-16
+</p>
+<h2 class="modified">Last Modified</h2>
+<p>
+2008-04-27
+</p>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TWebService</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TWebService"></a><h1 class="cio">Class TWebService</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td>Fields</td><td><a class="section"  href="#@Methods">Methods</a></td><td><a class="section"  href="#@Properties">Properties</a></td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TWebService = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Part of the &quot;multi-services&quot; feature.</p>
+<p>
+ This class should be considered magic. Don't mess with it.</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TWebService</li></ul><h2 class="overview">Overview</h2>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TWebService.html#Create">Create</a></b>(Service: <a   href="Rawflickr.html#TServiceType">TServiceType</a> = stFlickr);</code></td>
+</tr>
+</table>
+<a name="@Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TWebService.html#ServiceType">ServiceType</a></b>: <a   href="Rawflickr.html#TServiceType">TServiceType</a> read FServiceType write SetServiceType;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TWebService.html#BaseURI">BaseURI</a></b>: String read FBaseURI write SetBaseURI;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TWebService.html#Endpoint">Endpoint</a></b>[Index: <a   href="Rawflickr.html#TEndpoints">TEndpoints</a>]: String read GetEndpoint;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(Service: <a   href="Rawflickr.html#TServiceType">TServiceType</a> = stFlickr);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Class constructor</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="ServiceType"></a><code>property <b>ServiceType</b>: <a   href="Rawflickr.html#TServiceType">TServiceType</a> read FServiceType write SetServiceType;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Type of service</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="BaseURI"></a><code>property <b>BaseURI</b>: String read FBaseURI write SetBaseURI;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Base URI for endpoints</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Endpoint"></a><code>property <b>Endpoint</b>[Index: <a   href="Rawflickr.html#TEndpoints">TEndpoints</a>]: String read GetEndpoint;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Array of endpoint URIs relative to <a class="normal"  href="Rawflickr.TWebService.html#BaseURI">BaseURI</a></p>
+</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>

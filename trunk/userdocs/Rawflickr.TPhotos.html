@@ -1,0 +1,530 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TPhotos</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TPhotos"></a><h1 class="cio">Class TPhotos</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td><a class="section"  href="#@Fields">Fields</a></td><td><a class="section"  href="#@Methods">Methods</a></td><td>Properties</td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TPhotos = class(<a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Implements flickr.photos.*</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="ancestor"><a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a></li>
+<li class="thisitem">TPhotos</li></ul><h2 class="overview">Overview</h2>
+<a name="@Fields"></a><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code><b><a   href="Rawflickr.TPhotos.html#Comments">Comments</a></b>: <a   href="Rawflickr.TComments.html">TComments</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code><b><a   href="Rawflickr.TPhotos.html#Geo">Geo</a></b>: <a   href="Rawflickr.TGeoData.html">TGeoData</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code><b><a   href="Rawflickr.TPhotos.html#Licenses">Licenses</a></b>: <a   href="Rawflickr.TLicenses.html">TLicenses</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code><b><a   href="Rawflickr.TPhotos.html#Notes">Notes</a></b>: <a   href="Rawflickr.TNotes.html">TNotes</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code><b><a   href="Rawflickr.TPhotos.html#Transform">Transform</a></b>: <a   href="Rawflickr.TTransform.html">TTransform</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code><b><a   href="Rawflickr.TPhotos.html#Uploader">Uploader</a></b>: <a   href="Rawflickr.TUploader.html">TUploader</a>;</code></td>
+</tr>
+</table>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#search">search</a></b>(userId: String; searchParams: <a   href="Rawflickr.TPhotoSearchParams.html">TPhotoSearchParams</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>; sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a> = soDefault): String; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#search">search</a></b>(userId, groupId: String; SearchTerms: <a   href="Rawflickr.TSearchTerms.html">TSearchTerms</a>; Uploaded, Taken: <a   href="DateTimeExt.TDateRange.html">TDateRange</a>; GeoTerms: <a   href="Rawflickr.TGeoTerms.html">TGeoTerms</a>; ContentTerms: <a   href="Rawflickr.TContentFilter.html">TContentFilter</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>; sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a> = soDefault): String; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getContactsPhotos">getContactsPhotos</a></b>(userId: String= ''; count: Integer=0; justFriends: Boolean = False; singlePhoto: Boolean = False; includeSelf: Boolean = False; extras: String = ''): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getCounts">getCounts</a></b>(Uploaded, Taken: array of TDateTime): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getNotInSet">getNotInSet</a></b>(sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getRecent">getRecent</a></b>(extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getUntagged">getUntagged</a></b>(extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#recentlyUpdated">recentlyUpdated</a></b>(minDate: TDateTime; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getWithGeoData">getWithGeoData</a></b>(Uploaded, Taken: <a   href="DateTimeExt.TDateRange.html">TDateRange</a>; Privacy: <a   href="Rawflickr.html#TPrivacyFilter">TPrivacyFilter</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>; Sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a> = soDefault): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getWithoutGeoData">getWithoutGeoData</a></b>(Uploaded, Taken: <a   href="DateTimeExt.TDateRange.html">TDateRange</a>; Privacy: <a   href="Rawflickr.html#TPrivacyFilter">TPrivacyFilter</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>; Sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a> = soDefault): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getContext">getContext</a></b>(photoId: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getAllContexts">getAllContexts</a></b>(photoId: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getExif">getExif</a></b>(photoId: String; secret: string = ''): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getInfo">getInfo</a></b>(photoId: String; secret: string = ''): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getPerms">getPerms</a></b>(photoId: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getSizes">getSizes</a></b>(photoId: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#getFavorites">getFavorites</a></b>(photoId: String; perPage: Integer = 0; page : Integer = 0): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#setDates">setDates</a></b>(photoId: String; Posted: TDateTime = 0.0; Taken: TDateTime = 0.0; takenAprox: <a   href="Rawflickr.html#TDateGranularity">TDateGranularity</a> = 0): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#setMeta">setMeta</a></b>(photoId, Title, Description: String) : String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#setPerms">setPerms</a></b>(photoId: String; Visibility: <a   href="Rawflickr.html#TVisibility">TVisibility</a>; PermitComments, PermitMeta: <a   href="Rawflickr.html#TPermission">TPermission</a>) : String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#setContentType">setContentType</a></b>(photoId: String; ContentType: <a   href="Rawflickr.html#TContentType">TContentType</a>): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#setSafetyLevel">setSafetyLevel</a></b>(photoId: String; Level: <a   href="Rawflickr.html#TSafetyLevel">TSafetyLevel</a>; Hide: Boolean): String; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#setSafetyLevel">setSafetyLevel</a></b>(photoId: String; Level: <a   href="Rawflickr.html#TSafetyLevel">TSafetyLevel</a>): String; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#setTags">setTags</a></b>(photoId, tags: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#addTags">addTags</a></b>(photoId, tags: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#removeTag">removeTag</a></b>(tagId: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TPhotos.html#delete">delete</a></b>(photoId: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TPhotos.html#Create">Create</a></b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>destructor <b><a   href="Rawflickr.TPhotos.html#Destroy">Destroy</a></b>; override;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Comments"></a><code><b>Comments</b>: <a   href="Rawflickr.TComments.html">TComments</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TComments.html">TComments</a> instance</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Geo"></a><code><b>Geo</b>: <a   href="Rawflickr.TGeoData.html">TGeoData</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TGeoData.html">TGeoData</a> instance</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Licenses"></a><code><b>Licenses</b>: <a   href="Rawflickr.TLicenses.html">TLicenses</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TLicenses.html">TLicenses</a> instance</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Notes"></a><code><b>Notes</b>: <a   href="Rawflickr.TNotes.html">TNotes</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TNotes.html">TNotes</a> instance</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Transform"></a><code><b>Transform</b>: <a   href="Rawflickr.TTransform.html">TTransform</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TTransform.html">TTransform</a> instance</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Uploader"></a><code><b>Uploader</b>: <a   href="Rawflickr.TUploader.html">TUploader</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TUploader.html">TUploader</a> instance. To avoid a name clash (and repetition), this property isn't named as its Flickr counterpart flickr.photos.upload</p>
+</td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="search"></a><code>function <b>search</b>(userId: String; searchParams: <a   href="Rawflickr.TPhotoSearchParams.html">TPhotoSearchParams</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>; sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a> = soDefault): String; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.search</p>
+<p>
+ You can use this old, limited variant for simple searches, more or less like the normal search in the site.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="search"></a><code>function <b>search</b>(userId, groupId: String; SearchTerms: <a   href="Rawflickr.TSearchTerms.html">TSearchTerms</a>; Uploaded, Taken: <a   href="DateTimeExt.TDateRange.html">TDateRange</a>; GeoTerms: <a   href="Rawflickr.TGeoTerms.html">TGeoTerms</a>; ContentTerms: <a   href="Rawflickr.TContentFilter.html">TContentFilter</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>; sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a> = soDefault): String; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.search</p>
+<p>
+ This is the new, fully updated variant using a new set of logically arranged parameters.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getContactsPhotos"></a><code>function <b>getContactsPhotos</b>(userId: String= ''; count: Integer=0; justFriends: Boolean = False; singlePhoto: Boolean = False; includeSelf: Boolean = False; extras: String = ''): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements (flickr.photos.)getContactsPhotos and getContactsPublicPhotos. getContactsPublicPhotos is called if a non-empty userId is passed to the function; otherwise it calls getContactsPhotos, as expected.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getCounts"></a><code>function <b>getCounts</b>(Uploaded, Taken: array of TDateTime): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getCounts</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getNotInSet"></a><code>function <b>getNotInSet</b>(sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getNotInSet</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getRecent"></a><code>function <b>getRecent</b>(extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getRecent</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getUntagged"></a><code>function <b>getUntagged</b>(extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getUntagged</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="recentlyUpdated"></a><code>function <b>recentlyUpdated</b>(minDate: TDateTime; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.recentlyUpdated</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getWithGeoData"></a><code>function <b>getWithGeoData</b>(Uploaded, Taken: <a   href="DateTimeExt.TDateRange.html">TDateRange</a>; Privacy: <a   href="Rawflickr.html#TPrivacyFilter">TPrivacyFilter</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>; Sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a> = soDefault): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getWithGeoData</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getWithoutGeoData"></a><code>function <b>getWithoutGeoData</b>(Uploaded, Taken: <a   href="DateTimeExt.TDateRange.html">TDateRange</a>; Privacy: <a   href="Rawflickr.html#TPrivacyFilter">TPrivacyFilter</a>; extra: <a   href="Rawflickr.TXtraParams.html">TXtraParams</a>; Sort: <a   href="Rawflickr.html#TSortOrder">TSortOrder</a> = soDefault): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getWithoutGeoData</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getContext"></a><code>function <b>getContext</b>(photoId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getContext</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getAllContexts"></a><code>function <b>getAllContexts</b>(photoId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getAllContexts</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getExif"></a><code>function <b>getExif</b>(photoId: String; secret: string = ''): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getExif</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getInfo"></a><code>function <b>getInfo</b>(photoId: String; secret: string = ''): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getInfo</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getPerms"></a><code>function <b>getPerms</b>(photoId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getPerms</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getSizes"></a><code>function <b>getSizes</b>(photoId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getSizes</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getFavorites"></a><code>function <b>getFavorites</b>(photoId: String; perPage: Integer = 0; page : Integer = 0): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.getFavorites</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="setDates"></a><code>function <b>setDates</b>(photoId: String; Posted: TDateTime = 0.0; Taken: TDateTime = 0.0; takenAprox: <a   href="Rawflickr.html#TDateGranularity">TDateGranularity</a> = 0): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.setDates</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="setMeta"></a><code>function <b>setMeta</b>(photoId, Title, Description: String) : String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.setMeta</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="setPerms"></a><code>function <b>setPerms</b>(photoId: String; Visibility: <a   href="Rawflickr.html#TVisibility">TVisibility</a>; PermitComments, PermitMeta: <a   href="Rawflickr.html#TPermission">TPermission</a>) : String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.setPerms</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="setContentType"></a><code>function <b>setContentType</b>(photoId: String; ContentType: <a   href="Rawflickr.html#TContentType">TContentType</a>): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.setContentType (2008-04-02)</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="setSafetyLevel"></a><code>function <b>setSafetyLevel</b>(photoId: String; Level: <a   href="Rawflickr.html#TSafetyLevel">TSafetyLevel</a>; Hide: Boolean): String; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.setSafetyLevel (2008-04-02)</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="setSafetyLevel"></a><code>function <b>setSafetyLevel</b>(photoId: String; Level: <a   href="Rawflickr.html#TSafetyLevel">TSafetyLevel</a>): String; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.setSafetyLevel (2008-04-02) Use this variant to change the safety level w/out affecting 'hide'</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="setTags"></a><code>function <b>setTags</b>(photoId, tags: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.setTags</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="addTags"></a><code>function <b>addTags</b>(photoId, tags: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.addTags</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="removeTag"></a><code>function <b>removeTag</b>(tagId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.removeTag</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="delete"></a><code>function <b>delete</b>(photoId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.delete</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Destroy"></a><code>destructor <b>Destroy</b>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TFlickr</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TFlickr"></a><h1 class="cio">Class TFlickr</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td>Fields</td><td><a class="section"  href="#@Methods">Methods</a></td><td><a class="section"  href="#@Properties">Properties</a></td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TFlickr = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Base service class</p>
+<p>
+ This class is the basic &quot;service info&quot; wrapper used as <code>Owner</code> in <a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a> and descendants.
+
+<p>Use this class only if you need single, manual instances of <a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a> descendants; otherwise it'll we easier for you to instantiate a <a class="normal"  href="Rawflickr.TFlickrEx.html">TFlickrEx</a> object and access the API through its properties.</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TFlickr</li></ul><h2 class="overview">Overview</h2>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TFlickr.html#Create">Create</a></b>(AKey, ASecret: String; AService: <a   href="Rawflickr.html#TServiceType">TServiceType</a> = stFlickr);</code></td>
+</tr>
+</table>
+<a name="@Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickr.html#ApiKey">ApiKey</a></b>: String read FApiKey write SetApiKey;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickr.html#Secret">Secret</a></b>: String read FSecret write SetSecret;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickr.html#Service">Service</a></b>: <a   href="Rawflickr.TWebService.html">TWebService</a> read GetService;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickr.html#Token">Token</a></b>: String read FToken write FToken;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickr.html#Level">Level</a></b>: String read FLevel write FLevel;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickr.html#User">User</a></b>: <a   href="Rawflickr.TBasicUser.html">TBasicUser</a> read GetUser;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(AKey, ASecret: String; AService: <a   href="Rawflickr.html#TServiceType">TServiceType</a> = stFlickr);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Class constructor.</p>
+<p>
+   </p>
+<h6 class="description_section">See also</h6>
+<dl class="see_also">
+  <dt><a class="normal"  href="Rawflickr.TFlickr.html#ApiKey">ApiKey</a></dt>
+  <dd>API key associated to the application.</dd>
+  <dt><a class="normal"  href="Rawflickr.TFlickr.html#Secret">Secret</a></dt>
+  <dd>The shared secret associated with your API key.</dd>
+  <dt><a class="normal"  href="Rawflickr.TFlickr.html#Service">Service</a></dt>
+  <dd>Type of service we'are going to use.</dd>
+</dl>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="ApiKey"></a><code>property <b>ApiKey</b>: String read FApiKey write SetApiKey;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+API key associated to the application.</p>
+<p>
+ Actually, setting it does no more than setting a private field used by <a class="normal"  href="Rawflickr.TRESTApi.html#SimpleCall">TRESTApi.SimpleCall</a> and <a class="normal"  href="Rawflickr.TRESTApi.html#SignedCall">TRESTApi.SignedCall</a>, but as it has other implications this will probably change in the future.
+
+<p>To access Flickr you must use a valid key issued by them (along with the associated shared secret, see <a class="normal"  href="Rawflickr.TFlickr.html#Secret">Secret</a>). For 23, though, you can use any random string (they suggest your application name) or the same key as for Flickr (which I don't recommend).</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Secret"></a><code>property <b>Secret</b>: String read FSecret write SetSecret;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+The shared secret associated with your API key.</p>
+<p>
+ Actually, setting it does no more than setting a private field used by <a class="normal"  href="Rawflickr.TRESTApi.html#SignedCall">TRESTApi.SignedCall</a> to build the request's signature, but as it has other implications this will probably change in the future.
+
+<p>Note that 23 doesn't issues API keys and thus they neither need or use a shared secret to sign calls.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Service"></a><code>property <b>Service</b>: <a   href="Rawflickr.TWebService.html">TWebService</a> read GetService;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Type of service we'are going to use.</p>
+<p>
+ This property determines the URI of the API endpoint and how signed calls (see <a class="normal"  href="Rawflickr.TRESTApi.html#SignedCall">TRESTApi.SignedCall</a>) are signed.
+
+<p>Setting <code>Service.ServiceType</code> will also change <code>Service.BaseURI</code> to the corresponding <a class="normal"  href="Rawflickr.html#KnownBaseURI">KnownBaseURI</a>; if needed, you can later set a different <code>Service.BaseURI</code> p.e. if you set: <code>Service.ServiceType := stOther</code>.
+
+<p>By itself, <code>Service.ServiceType</code> determines how calls are signed. Services other than Flickr &mdash;p.e. 23&mdash; issue neither API keys or secrets and, thus, don't need the MD5 signatures. Since sending a signature when it's not needed represents a security risk, we don't do it.
+
+<p><b>2007-01-07</b>: This property has been completely reimplemented; if you have code like the old recommended: </p>
+
+<pre class="longcode">
+     flickr.Service := st23;
+     UseEndPoint(ep23);
+     flickr.ApiKey := <span class="pascal_string">'My23ApiKey'</span>;
+    </pre>
+
+<p> you should change it to something like: </p>
+
+<pre class="longcode">
+     flickr.Service.ServiceType := st23;
+     flickr.ApiKey := <span class="pascal_string">'My23ApiKey'</span>;
+    </pre>
+
+<p> </p>
+<h6 class="description_section">See also</h6>
+<dl class="see_also">
+  <dt><a class="normal"  href="Rawflickr.TWebService.html">TWebService</a></dt>
+  <dd>Part of the &quot;multi-services&quot; feature.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Token"></a><code>property <b>Token</b>: String read FToken write FToken;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Authentication token.</p>
+<p>
+ The value of this property is updated every time you call <a class="normal"  href="Rawflickr.TAuth.html#checkToken">TAuth.checkToken</a>, <a class="normal"  href="Rawflickr.TAuth.html#getToken">TAuth.getToken</a> or <a class="normal"  href="Rawflickr.TAuth.html#getFullToken">TAuth.getFullToken</a>. You can set it directly if you have a valid token from a previous authentication but in that case you may better use <a class="normal"  href="Rawflickr.TAuth.html#checkToken">TAuth.checkToken</a>; that way you won't only ensure that the token is still valid, but also update <a class="normal"  href="Rawflickr.TFlickr.html#User">TFlickr.User</a> with the correct user's info.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Level"></a><code>property <b>Level</b>: String read FLevel write FLevel;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Permissions level for which the token&ndash;if any&ndash;is valid.</p>
+<p>
+ It will be updated by a successful call to any of the <a class="normal"  href="Rawflickr.TAuth.html">TAuth</a> methods that either use it or get it from its response (Note that <a class="normal"  href="Rawflickr.TAuth.html">TAuth</a> methods always parse its responses.)</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="User"></a><code>property <b>User</b>: <a   href="Rawflickr.TBasicUser.html">TBasicUser</a> read GetUser;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Basic user info</p>
+</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>

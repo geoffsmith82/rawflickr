@@ -1,0 +1,25 @@
+DiGraph Uses {
+  DateTimeExt -> SysUtils
+  DateTimeExt -> Windows
+  DateTimeExt [href="DateTimeExt.html"]
+  Rawflickr -> classes
+  Rawflickr -> DateTimeExt
+  Rawflickr -> dialogs
+  Rawflickr -> LibXMLParser
+  Rawflickr -> MD5
+  Rawflickr -> StringsExt
+  Rawflickr -> syncobjs
+  Rawflickr -> sysutils
+  Rawflickr -> windows
+  Rawflickr [href="Rawflickr.html"]
+  rfNetHlp -> Classes
+  rfNetHlp -> IdHTTP
+  rfNetHlp -> IdMultipartFormData
+  rfNetHlp -> SysUtils
+  rfNetHlp [href="rfNetHlp.html"]
+  StringsExt -> Classes
+  StringsExt -> Consts
+  StringsExt -> SysUtils
+  StringsExt -> Windows
+  StringsExt [href="StringsExt.html"]
+}

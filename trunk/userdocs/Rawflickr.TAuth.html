@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TAuth</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TAuth"></a><h1 class="cio">Class TAuth</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td>Fields</td><td><a class="section"  href="#@Methods">Methods</a></td><td><a class="section"  href="#@Properties">Properties</a></td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TAuth = class(<a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Implements flickr.auth.* methods.</p>
+<p>
+ The authentication process for Flickr is explained in the document &quot;Authentication API&quot; &lt;<a  target="_parent" href="http://www.flickr.com/services/api/auth.spec.html">http://www.flickr.com/services/api/auth.spec.html</a>&gt;. For 23, consult &quot;User authentication&quot; at &lt;<a  target="_parent" href="http://www.23hq.com/doc/api/auth">http://www.23hq.com/doc/api/auth</a>&gt;</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="ancestor"><a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a></li>
+<li class="thisitem">TAuth</li></ul><h2 class="overview">Overview</h2>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TAuth.html#ParseResponse">ParseResponse</a></b>(resp: String); override;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TAuth.html#ParseFrobResp">ParseFrobResp</a></b>(resp: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TAuth.html#checkToken">checkToken</a></b>(Token: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TAuth.html#getFrob">getFrob</a></b>: String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TAuth.html#getFullToken">getFullToken</a></b>(miniToken: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TAuth.html#getToken">getToken</a></b>(frob: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TAuth.html#GetLoginLink">GetLoginLink</a></b>(perms: String; frob: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TAuth.html#GetLoginLinkW">GetLoginLinkW</a></b>(perms: String; frob: String): WideString;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TAuth.html#Create">Create</a></b>(Owner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>);</code></td>
+</tr>
+</table>
+<a name="@Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TAuth.html#SignAll">SignAll</a></b>: Boolean read FSignAll;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="ParseResponse"></a><code>procedure <b>ParseResponse</b>(resp: String); override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Parses checkToken / getToken RSP and (if sucessful) updates TFlickr(Owner).UserInfo, Token and Level (i.e. the account info).</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="ParseFrobResp"></a><code>function <b>ParseFrobResp</b>(resp: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Parses a getFrob response and returns (if sucessful) a frob.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="checkToken"></a><code>function <b>checkToken</b>(Token: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.auth.checkToken As a collateral effect it updates the Owner's account info i.e. <code>UserInfo</code>, <code>Token</code> and <code>Level</code> (see <a class="normal"  href="Rawflickr.TFlickr.html">TFlickr</a>)</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getFrob"></a><code>function <b>getFrob</b>: String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.auth.getFrob. <b>NOTE</b> that this call doesn't return any XML payload. It will instead try to parse the response and return the frob; If it doesn't succeeds you'll receive an exception raised from the default parser.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getFullToken"></a><code>function <b>getFullToken</b>(miniToken: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.auth.getFullToken. Same collateral effects that <a class="normal"  href="Rawflickr.TAuth.html#checkToken">checkToken</a></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getToken"></a><code>function <b>getToken</b>(frob: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.auth.getToken. Same collateral effects that <a class="normal"  href="Rawflickr.TAuth.html#checkToken">checkToken</a></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="GetLoginLink"></a><code>function <b>GetLoginLink</b>(perms: String; frob: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns an AnsiString containing the unencoded URI to which the user must navigate in order to authenticate the application.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="GetLoginLinkW"></a><code>function <b>GetLoginLinkW</b>(perms: String; frob: String): WideString;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns a WideString containing the unencoded URI to which the user must navigate in order to authenticate the application.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(Owner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Class constructor. Unlike the inherited one, it doesn't accept a <a class="normal"  href="Rawflickr.html#TSignOption">TSignOption</a> parameter. Since all flickr.auth.* methods must be signed, I introduced this constraint to circumvent an already corrected bug in Flickr and prevent a common error.</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="SignAll"></a><code>property <b>SignAll</b>: Boolean read FSignAll;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Read Only. Write access is banned because all auth calls are signed</p>
+</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>
