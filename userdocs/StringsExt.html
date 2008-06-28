@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: StringsExt</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<h1 class="unit">Unit StringsExt</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Uses">uses</a></td><td><a class="section"  href="#@Classes">Classes, Interfaces, Objects and Records</a></td><td><a class="section"  href="#@FuncsProcs">Functions and Procedures</a></td><td><a class="section"  href="#@Types">Types</a></td><td>Constants</td><td>Variables</td></tr></table>
+<a name="@Description"></a><h2 class="description">Description</h2>
+<p>
+String Array Objects for Delphi</p>
+<p>
+   
+
+<p>Lightweight replacement of TStrings &amp; TStringsList and miscelaneous string handling routines (rawflickr release)
+
+<p>Copyright 1998, 2006 by Luis Caballero Martínez. All Rights Reserved Released under a Mozilla Public License 1.1</p>
+<a name="@Uses"></a><h2 class="uses">uses</h2>
+<ul class="useslist"><li>Classes</li><li>Consts</li><li>SysUtils</li><li>Windows</li></ul><h2 class="overview">Overview</h2>
+<a name="@Classes"></a><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold"  href="StringsExt.TStringArray.html"><code>TStringArray</code></a></td>
+<td class="itemdesc">This class implements methods and functions to acccess easily a dynamic array of Strings</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold"  href="StringsExt.TWebParams.html"><code>TWebParams</code></a></td>
+<td class="itemdesc">Specialized class to hold and manage parameters of web calls</td>
+</tr>
+</table>
+<a name="@FuncsProcs"></a><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="StringsExt.html#StringToUTF8">StringToUTF8</a></b>(const Source: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="StringsExt.html#UTF8ToString">UTF8ToString</a></b>(const Source: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a   href="StringsExt.html#URLEncode">URLEncode</a></b>(const s: String): String; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a   href="StringsExt.html#URLEncode">URLEncode</a></b>(Params: TStrings): String; overload;</code></td>
+</tr>
+</table>
+<a name="@Types"></a><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a   href="StringsExt.html#TStringsParser">TStringsParser</a></b> = function(Source: <a   href="StringsExt.TStringArray.html">TStringArray</a>): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a   href="StringsExt.html#TParamEncoding">TParamEncoding</a></b> = (...);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="StringToUTF8"></a><code>function <b>StringToUTF8</b>(const Source: String): String;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="UTF8ToString"></a><code>function <b>UTF8ToString</b>(const Source: String): String;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="URLEncode"></a><code>function <b>URLEncode</b>(const s: String): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Encodes a string for insertion in a URL. This function isn't intended to encode full URIs, but the strings used to build them. If you pass a whole URI the result will probably not be usable as a URI anymore. See the overloaded TStrings version for a sample of use.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="URLEncode"></a><code>function <b>URLEncode</b>(Params: TStrings): String; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns the TStrings 'Params' text encoded as a URL request params string. Note that it'll add a field even if its value is an empty string.
+
+<p>The actual encoding is made in the overloaded 'String parameter' variant.</p>
+</td></tr>
+</table>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TStringsParser"></a><code><b>TStringsParser</b> = function(Source: <a   href="StringsExt.TStringArray.html">TStringArray</a>): String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+forward</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="TParamEncoding"></a><code><b>TParamEncoding</b> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;<h6 class="description_section">Values</h6>
+<ul>
+<li>
+peNone: </li>
+<li>
+peANSI: </li>
+<li>
+peUtf8: </li>
+</ul>
+</td></tr>
+</table>
+<h2 class="authors">Author</h2>
+<ul class="authors">
+<li>Luis Caballero Mnez. &lt;<a   href="mailto:sillyluis@yahoo.es">sillyluis@yahoo.es</a>&gt;</li>
+</ul>
+<h2 class="created">Created</h2>
+<p>
+Summer of 1998
+</p>
+<h2 class="modified">Last Modified</h2>
+<p>
+2006-06-28
+</p>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:30</em>
+</span>
+</body></html>

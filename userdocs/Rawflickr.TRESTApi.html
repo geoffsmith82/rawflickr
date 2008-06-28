@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TRESTApi</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TRESTApi"></a><h1 class="cio">Class TRESTApi</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td>Fields</td><td><a class="section"  href="#@Methods">Methods</a></td><td><a class="section"  href="#@Properties">Properties</a></td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TRESTApi = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Base REST API Implementation.</p>
+<p>
+ This generic, base class implements most of the behaviour needed to access a web service. It was built specifically to access Flickr(tm) but you may probably descend from it the classes needed for services using a like API paradigm.
+
+<p>Even though it isn't an abstract one, you shouldn't need to make instances of this class; rather, derive a child class implementing the specific behaviour you need, like this library does.</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TRESTApi</li></ul><h2 class="overview">Overview</h2>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TRESTApi.html#Lock">Lock</a></b>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TRESTApi.html#UnLock">UnLock</a></b>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TRESTApi.html#SignedCall">SignedCall</a></b>(const method: String): String; dynamic;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TRESTApi.html#SimpleCall">SimpleCall</a></b>(const method: String): String; dynamic;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TRESTApi.html#ParseResponse">ParseResponse</a></b>(resp: String); dynamic;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TRESTApi.html#CheckError">CheckError</a></b>(XMLResp: String);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TRESTApi.html#CheckAndSave">CheckAndSave</a></b>(XMLResp: String; Stream: TStream); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TRESTApi.html#CheckAndSave">CheckAndSave</a></b>(XMLResp, FileName: String); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TRESTApi.html#FlickrCall">FlickrCall</a></b>(const method: String; Signed: Boolean = False): String; virtual;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TRESTApi.html#Create">Create</a></b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>destructor <b><a   href="Rawflickr.TRESTApi.html#Destroy">Destroy</a></b>; override;</code></td>
+</tr>
+</table>
+<a name="@Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TRESTApi.html#SignAll">SignAll</a></b>: Boolean read FSignAll write FSignAll default False;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TRESTApi.html#Request">Request</a></b>: <a   href="StringsExt.TWebParams.html">TWebParams</a> read FRequest write FRequest;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TRESTApi.html#LastResponse">LastResponse</a></b>: String read FResponse;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TRESTApi.html#Owner">Owner</a></b>: <a   href="Rawflickr.TFlickr.html">TFlickr</a> read FOwner;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TRESTApi.html#Throttle">Throttle</a></b>: Cardinal read FThrottle write FThrottle default 10;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TRESTApi.html#RandomWait">RandomWait</a></b>: Boolean read FRandomWait write FRandomWait;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TRESTApi.html#ErrorClass">ErrorClass</a></b>: <a   href="Rawflickr.html#EFlickrErrorClass">EFlickrErrorClass</a> read FErrorClass
+                                            write FErrorClass;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="Lock"></a><code>procedure <b>Lock</b>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Multithreading. Not yet documented.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="UnLock"></a><code>procedure <b>UnLock</b>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Multithreading. Not yet documented.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="SignedCall"></a><code>function <b>SignedCall</b>(const method: String): String; dynamic;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Prepares and issues a signed call to the endpoint</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="SimpleCall"></a><code>function <b>SimpleCall</b>(const method: String): String; dynamic;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Prepares and issues an unsigned call to the endpoint unless <a class="normal"  href="Rawflickr.TRESTApi.html#SignAll">SignAll</a> = <code>True</code>, in which case control will be transferred to <a class="normal"  href="Rawflickr.TRESTApi.html#SignedCall">SignedCall</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="ParseResponse"></a><code>procedure <b>ParseResponse</b>(resp: String); dynamic;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Default response parser. All it does is to build a INI-like structure using a simple <code>XMLToStrings</code> function</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="CheckError"></a><code>procedure <b>CheckError</b>(XMLResp: String);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+REST response checking.</p>
+<p>
+ This method checks whether a REST response status is &quot;fail&quot;, &quot;ok&quot; or isn't valid&mdash;i.e. the status is neither of those two or it isn't even a valid XML REST payload.  </p>
+<h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><a class="normal"  href="Rawflickr.EFlickrError.html">EFlickrError</a></dt>
+<dd>descendant if the status is &quot;fail&quot;.</dd>
+<dt><a class="normal"  href="Rawflickr.EFlickrBadResponse.html">EFlickrBadResponse</a></dt>
+<dd>if the status is neither &quot;fail&quot; or &quot;ok&quot;, case that includes invalid REST payloads.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="CheckAndSave"></a><code>procedure <b>CheckAndSave</b>(XMLResp: String; Stream: TStream); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Saves a response into a stream.</p>
+<p>
+ Since the response is saved after checking it with <a class="normal"  href="Rawflickr.TRESTApi.html#CheckError">CheckError</a> and <a class="normal"  href="Rawflickr.TRESTApi.html#CheckError">CheckError</a> raises an exception on error conditions, you can only save valid, non-fail responses with this procedure.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="CheckAndSave"></a><code>procedure <b>CheckAndSave</b>(XMLResp, FileName: String); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Saves a response into a file.</p>
+<p>
+ All this method does is to create a file stream and then call the &quot;stream&quot; variant. See its notes</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="FlickrCall"></a><code>function <b>FlickrCall</b>(const method: String; Signed: Boolean = False): String; virtual;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Generic Flickr method call</p>
+<p>
+ All it does is select and call either SimpleCall or SignedCall, depending of the value of the parameter <code>Signed</code></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Default class constructor.</p>
+<p>
+  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOwner</dt>
+<dd>TFlickr instance that &quot;owns&quot; the object.</dd>
+<dt>Sign</dt>
+<dd><code>sgnAlways</code>: Issue always signed calls<br> <code>sgnRequired</code>: Sign call only when required (default)</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Destroy"></a><code>destructor <b>Destroy</b>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="SignAll"></a><code>property <b>SignAll</b>: Boolean read FSignAll write FSignAll default False;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Tells <code>TRESTApi</code> when to issue signed call</p>
+<p>
+ When set to <code>True</code> <code>TRESTApi</code> will issue <b>all</b> calls as signed, even if made through <a class="normal"  href="Rawflickr.TRESTApi.html#SimpleCall">SimpleCall</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Request"></a><code>property <b>Request</b>: <a   href="StringsExt.TWebParams.html">TWebParams</a> read FRequest write FRequest;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Request parameters for a call to flickr.</p>
+<p>
+ Use this property to set the parameters of the request if you're implementing a flickr method in a <a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a> descendant. Other users of the library should consider this value as read-only; after a flickr method call you'll find here all the parameters as passed to the HTTP client.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="LastResponse"></a><code>property <b>LastResponse</b>: String read FResponse;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Latest RSP received from the web service. Read-only.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Owner"></a><code>property <b>Owner</b>: <a   href="Rawflickr.TFlickr.html">TFlickr</a> read FOwner;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+<a class="normal"  href="Rawflickr.TFlickr.html">TFlickr</a> or descendant &quot;owning&quot; this class' instance.</p>
+<p>
+ Though this &quot;ownership&quot; is a somewhat difussed concept, all descendants of this class get fields from its <code>Owner</code>, so you need to provide them a valid instance of <a class="normal"  href="Rawflickr.TFlickr.html">TFlickr</a>&ndash;of course, unless the object is indeed a <code>TFlickr</code> instance's property.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Throttle"></a><code>property <b>Throttle</b>: Cardinal read FThrottle write FThrottle default 10;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Controls a delay between calls.</p>
+<p>
+ If non-zero, any call to ??? will wait for 'value' 100th of seconds before returning, thus implementing a crude &quot;bandwidth&quot; control.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="RandomWait"></a><code>property <b>RandomWait</b>: Boolean read FRandomWait write FRandomWait;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Controls how <a class="normal"  href="Rawflickr.TRESTApi.html#Throttle">Throttle</a> will be interpreted.</p>
+<p>
+ If set, <a class="normal"  href="Rawflickr.TRESTApi.html#Throttle">Throttle</a> will be interpreted as the maximum wait value, rather than as an uniform wait value.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="ErrorClass"></a><code>property <b>ErrorClass</b>: <a   href="Rawflickr.html#EFlickrErrorClass">EFlickrErrorClass</a> read FErrorClass
+                                            write FErrorClass;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Class reference for exceptions raised for invalid or &quot;fail&quot; responses</p>
+</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>

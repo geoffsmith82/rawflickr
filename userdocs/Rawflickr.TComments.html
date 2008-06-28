@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TComments</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TComments"></a><h1 class="cio">Class TComments</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td>Fields</td><td><a class="section"  href="#@Methods">Methods</a></td><td><a class="section"  href="#@Properties">Properties</a></td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TComments = class(<a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Implements flickr.photos.comments.* and flickr.photosets.comments.*</p>
+<p>
+ TComments is polimorphic and depends of BaseGroup and BaseIdName to know which group and Id names to use on calls to the Flickr API</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="ancestor"><a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a></li>
+<li class="thisitem">TComments</li></ul><h2 class="overview">Overview</h2>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TComments.html#getList">getList</a></b>(entityId: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TComments.html#addComment">addComment</a></b>(entityId, text: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TComments.html#deleteComment">deleteComment</a></b>(commentId: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TComments.html#editComment">editComment</a></b>(commentId, text: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TComments.html#Create">Create</a></b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; ABaseGroup, ABaseIdName: String; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+</table>
+<a name="@Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TComments.html#BaseGroup">BaseGroup</a></b>: String read FBaseGroup;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TComments.html#BaseIdName">BaseIdName</a></b>: String read FBaseIdName;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getList"></a><code>function <b>getList</b>(entityId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.*.comments.getList </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>entityId</dt>
+<dd>corresponds to either photo_id or photoset_id, depending of <a class="normal"  href="Rawflickr.TComments.html#BaseIdName">BaseIdName</a></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="addComment"></a><code>function <b>addComment</b>(entityId, text: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.*.comments.addComment</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="deleteComment"></a><code>function <b>deleteComment</b>(commentId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.*.comments.deleteComment</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="editComment"></a><code>function <b>editComment</b>(commentId, text: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.*.comments.editComment</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; ABaseGroup, ABaseIdName: String; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="BaseGroup"></a><code>property <b>BaseGroup</b>: String read FBaseGroup;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Name of the base group of calls. <b>BaseGroup</b> is used to build the 'method' parameter in the call to the web service; p.e. for flickr.<b>photosets</b>.comments.* you would make:
+
+<p><code>BaseGroup := 'photosets';</code>
+
+<p>Both <a class="normal"  href="Rawflickr.TPhotos.html">TPhotos</a> and <a class="normal"  href="Rawflickr.TPhotosets.html">TPhotosets</a> do this themselves when they create their <code>Comments</code> property; you don't need to do it yourself.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="BaseIdName"></a><code>property <b>BaseIdName</b>: String read FBaseIdName;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Name of the base ID to use in the call to the web service. <b>BaseIdName</b> is used to build the 'xxx_id' parameter for the web service call; p.e. flickr.photos.comments.* uses a parameter called <code>photo_id</code>, so you would do:
+
+<p><code>Comments.BaseIdName := 'photo';</code>.
+
+<p><b>Note</b>: Both <a class="normal"  href="Rawflickr.TPhotos.html">TPhotos</a> and <a class="normal"  href="Rawflickr.TPhotosets.html">TPhotosets</a> do this themselves when they create their <code>Comments</code> property; you don't need to do it yourself.</p>
+</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>

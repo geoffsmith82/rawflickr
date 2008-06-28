@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TUploader</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TUploader"></a><h1 class="cio">Class TUploader</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td>Fields</td><td><a class="section"  href="#@Methods">Methods</a></td><td>Properties</td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TUploader = class(<a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Implements flickr.photos.upload.* and the Photo Upload/Replace API</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="ancestor"><a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a></li>
+<li class="thisitem">TUploader</li></ul><h2 class="overview">Overview</h2>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TUploader.html#GetUploadRequest">GetUploadRequest</a></b>(Title: String; Description: String; Tags: String; Visibility: <a   href="Rawflickr.html#TVisibility">TVisibility</a>; Asynchronous: Boolean);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>procedure <b><a   href="Rawflickr.TUploader.html#GetReplaceRequest">GetReplaceRequest</a></b>(photoId: String; Asynchronous: Boolean);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUploader.html#checkTickets">checkTickets</a></b>(tickets: String): String; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUploader.html#checkTickets">checkTickets</a></b>(tickets: array of String): String; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUploader.html#Upload">Upload</a></b>(Stream: TStream; Filename: String; Title: String = ''; Description: String = ''; Tags: String = ''; Visibility: <a   href="Rawflickr.html#TVisibility">TVisibility</a> = []; Asynchronous: Boolean = False): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUploader.html#Replace">Replace</a></b>(Stream: TStream; Filename: String; photoId: String; Asynchronous: Boolean = False): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TUploader.html#Create">Create</a></b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="GetUploadRequest"></a><code>procedure <b>GetUploadRequest</b>(Title: String; Description: String; Tags: String; Visibility: <a   href="Rawflickr.html#TVisibility">TVisibility</a>; Asynchronous: Boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Builds a proper FRequest to be used with the Upload API.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><a name="GetReplaceRequest"></a><code>procedure <b>GetReplaceRequest</b>(photoId: String; Asynchronous: Boolean);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Builds a proper FRequest to be used with the Replace API.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="checkTickets"></a><code>function <b>checkTickets</b>(tickets: String): String; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.upload.checkTickets. This variant takes a comma-delimited list of ticket ids.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="checkTickets"></a><code>function <b>checkTickets</b>(tickets: array of String): String; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.photos.upload.checkTickets. This variant takes an array of single ticket ids.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Upload"></a><code>function <b>Upload</b>(Stream: TStream; Filename: String; Title: String = ''; Description: String = ''; Tags: String = ''; Visibility: <a   href="Rawflickr.html#TVisibility">TVisibility</a> = []; Asynchronous: Boolean = False): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Uploads a photo (u other media) to the web service.</p>
+<p>
+ The <code>Stream</code> parameter of this function has preference over <code>Filename</code>, meaning that if you pass a valid stream to the function, <code>Filename</code> won't be validated and will be passed as such. If <code>Stream</code> is <code>Nil</code>, however, the local file pointed to by <code>Filename</code> must exist and be readable, since it will be opened as a <code>TFileStream</code> and sent; i.e. this two code snippets are equivalent: </p>
+
+<pre class="longcode">
+     <span class="pascal_comment">// using Stream:</span>
+     AFileName := <span class="pascal_string">'\My Pictures\incredible.jpg'</span>;
+     fs := TFileStream.Create(AFileName, fmOpenRead <span class="pascal_keyword">or</span> fmShareDenyWrite);
+     AFileName := <span class="pascal_string">'whatever you want'</span>; <span class="pascal_comment">// @italic(it doesn't matter at all...)</span>
+     response := Flickr.Photos.Uploader.Upload(fs, AFileName, <span class="pascal_string">'nice photo'</span>);
+
+     <span class="pascal_comment">// using just filename</span>
+     AFileName := <span class="pascal_string">'\My Pictures\incredible.jpg'</span>;
+     response := Flickr.Photos.Uploader.Upload(<span class="pascal_keyword">nil</span>, AFileName, <span class="pascal_string">'nice photo'</span>);
+    </pre>
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>Stream</dt>
+<dd>TStream which contains the graphic data to upload; if this parameter is <code>Nil</code>, <code>Filename</code> will be interpreted as the name of a local file to upload.</dd>
+<dt>Filename</dt>
+<dd>Name of the file to send on the request; if <code>Stream</code> is <code>Nil</code>, the file pointed to by <code>Filename</code> will be opened as a <code>TFileStream</code> and its content sent on the request as the photograph data; otherwise the name will be sent as the filename corresponding to <code>Stream</code>.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Replace"></a><code>function <b>Replace</b>(Stream: TStream; Filename: String; photoId: String; Asynchronous: Boolean = False): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Replaces an already uploaded photo for a new one. </p>
+<h6 class="description_section">See also</h6>
+<dl class="see_also">
+  <dt><a class="normal"  href="Rawflickr.TUploader.html#Upload">to know how @code(Stream) and
+              @code(Filename) are interpreted</a></dt>
+  <dd>Uploads a photo (u other media) to the web service.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:29</em>
+</span>
+</body></html>

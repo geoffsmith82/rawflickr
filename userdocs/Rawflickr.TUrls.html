@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TUrls</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TUrls"></a><h1 class="cio">Class TUrls</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td>Fields</td><td><a class="section"  href="#@Methods">Methods</a></td><td>Properties</td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TUrls = class(<a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+@abstractImplements flickr.urls.*) All the calls in this class return static info, so they are good candidates for caching; you should cache, at least, the more frequently used info p.e. id - URI pairs of the user's groups, user pages URLs, etc.</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="ancestor"><a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a></li>
+<li class="thisitem">TUrls</li></ul><h2 class="overview">Overview</h2>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUrls.html#getGroup">getGroup</a></b>(groupId: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUrls.html#getUserPhotos">getUserPhotos</a></b>(userId: String = ''): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUrls.html#getUserProfile">getUserProfile</a></b>(userId: String = ''): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUrls.html#lookupGroup">lookupGroup</a></b>(groupUrl: String): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TUrls.html#lookupUser">lookupUser</a></b>(userUrl: String): String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TUrls.html#Create">Create</a></b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getGroup"></a><code>function <b>getGroup</b>(groupId: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.urls.getGroup</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getUserPhotos"></a><code>function <b>getUserPhotos</b>(userId: String = ''): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.urls.getUserPhotos</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="getUserProfile"></a><code>function <b>getUserProfile</b>(userId: String = ''): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.urls.getUserProfile</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="lookupGroup"></a><code>function <b>lookupGroup</b>(groupUrl: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.urls.lookupGroup</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="lookupUser"></a><code>function <b>lookupUser</b>(userUrl: String): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Implements flickr.urls.lookupUser</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(AOwner: <a   href="Rawflickr.TFlickr.html">TFlickr</a>; Sign: <a   href="Rawflickr.html#TSignOption">TSignOption</a> = sgnRequired);</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:30</em>
+</span>
+</body></html>

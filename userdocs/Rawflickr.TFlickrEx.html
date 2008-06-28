@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="GENERATOR" content="PasDoc 0.10.0">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Rawflickr 1.2 Documentation: Rawflickr: Class TFlickrEx</title>
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<a name="TFlickrEx"></a><h1 class="cio">Class TFlickrEx</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section"  href="#@Description">Description</a></td><td><a class="section"  href="#@Hierarchy">Hierarchy</a></td><td>Fields</td><td><a class="section"  href="#@Methods">Methods</a></td><td><a class="section"  href="#@Properties">Properties</a></td></tr></table>
+<a name="@Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a   href="Rawflickr.html">Rawflickr</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TFlickrEx = class(<a class="normal"  href="Rawflickr.TFlickr.html">TFlickr</a>)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Extended web service class</p>
+<p>
+ This descendant of <a class="normal"  href="Rawflickr.TFlickr.html">TFlickr</a> introduces properties designed to provide access to Flickr API methods from a single object, as well as a single-call authorization process.</p>
+<a name="@Hierarchy"></a><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="ancestor"><a class="normal"  href="Rawflickr.TFlickr.html">TFlickr</a></li>
+<li class="thisitem">TFlickrEx</li></ul><h2 class="overview">Overview</h2>
+<a name="@Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a   href="Rawflickr.TFlickrEx.html#Authorize">Authorize</a></b>(Perms: String = ''; Token: String = ''): Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a   href="Rawflickr.TFlickrEx.html#Create">Create</a></b>(AKey, ASecret: String; AService: <a   href="Rawflickr.html#TServiceType">TServiceType</a> = stFlickr);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>destructor <b><a   href="Rawflickr.TFlickrEx.html#Destroy">Destroy</a></b>; override;</code></td>
+</tr>
+</table>
+<a name="@Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Auth">Auth</a></b>      : <a   href="Rawflickr.TAuth.html">TAuth</a> read GetAuth;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Activity">Activity</a></b>  : <a   href="Rawflickr.TActivity.html">TActivity</a> read GetActivity;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Blogs">Blogs</a></b>     : <a   href="Rawflickr.TBlogs.html">TBlogs</a> read GetBlogs;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Contacts">Contacts</a></b>  : <a   href="Rawflickr.TContacts.html">TContacts</a> read GetContacts;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Favorites">Favorites</a></b> : <a   href="Rawflickr.TFavorites.html">TFavorites</a> read GetFavorites;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Groups">Groups</a></b>    : <a   href="Rawflickr.TGroups.html">TGroups</a> read GetGroups;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Interestingness">Interestingness</a></b>: <a   href="Rawflickr.TInterestingness.html">TInterestingness</a> read GetInterestingness;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#People">People</a></b>    : <a   href="Rawflickr.TPeople.html">TPeople</a> read GetPeople;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Photos">Photos</a></b>    : <a   href="Rawflickr.TPhotos.html">TPhotos</a> read GetPhotos;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Photosets">Photosets</a></b> : <a   href="Rawflickr.TPhotosets.html">TPhotosets</a> read GetPhotosets;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Places">Places</a></b> : <a   href="Rawflickr.TPlaces.html">TPlaces</a> read GetPlaces;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Prefs">Prefs</a></b> : <a   href="Rawflickr.TPrefs.html">TPrefs</a> read GetPrefs;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Reflection">Reflection</a></b>: <a   href="Rawflickr.TReflection.html">TReflection</a> read GetReflection;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Tags">Tags</a></b>      : <a   href="Rawflickr.TTags.html">TTags</a> read GetTags;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Test">Test</a></b>      : <a   href="Rawflickr.TTest.html">TTest</a> read GetTest;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#Urls">Urls</a></b>      : <a   href="Rawflickr.TUrls.html">TUrls</a> read GetUrls;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#SignAll">SignAll</a></b>: Boolean read FSignAll write SetSignAll default False;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a   href="Rawflickr.TFlickrEx.html#OnAuthorize">OnAuthorize</a></b>: <a   href="Rawflickr.html#TAuthorizeEvent">TAuthorizeEvent</a> read FOnAuthorize
+                                          write FOnAuthorize;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Authorize"></a><code>function <b>Authorize</b>(Perms: String = ''; Token: String = ''): Boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Performs a desktop authorization process.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Create"></a><code>constructor <b>Create</b>(AKey, ASecret: String; AService: <a   href="Rawflickr.html#TServiceType">TServiceType</a> = stFlickr);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Class constructor.</p>
+<p>
+ For Flickr, you must have a valid API key and secret. For 23 you can use any arbitrary key (though they recommend it to be the application name) and AFAIK you don't need any &quot;Secret&quot;, given that their authenticated calls are different.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Destroy"></a><code>destructor <b>Destroy</b>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Auth"></a><code>property <b>Auth</b>      : <a   href="Rawflickr.TAuth.html">TAuth</a> read GetAuth;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TAuth.html">TAuth</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Activity"></a><code>property <b>Activity</b>  : <a   href="Rawflickr.TActivity.html">TActivity</a> read GetActivity;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TActivity.html">TActivity</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Blogs"></a><code>property <b>Blogs</b>     : <a   href="Rawflickr.TBlogs.html">TBlogs</a> read GetBlogs;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TBlogs.html">TBlogs</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Contacts"></a><code>property <b>Contacts</b>  : <a   href="Rawflickr.TContacts.html">TContacts</a> read GetContacts;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TContacts.html">TContacts</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Favorites"></a><code>property <b>Favorites</b> : <a   href="Rawflickr.TFavorites.html">TFavorites</a> read GetFavorites;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TFavorites.html">TFavorites</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Groups"></a><code>property <b>Groups</b>    : <a   href="Rawflickr.TGroups.html">TGroups</a> read GetGroups;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TGroups.html">TGroups</a> instance...</p>
+<p>
+ and, through it, to a <a class="normal"  href="Rawflickr.TPools.html">TPools</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Interestingness"></a><code>property <b>Interestingness</b>: <a   href="Rawflickr.TInterestingness.html">TInterestingness</a> read GetInterestingness;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TInterestingness.html">TInterestingness</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="People"></a><code>property <b>People</b>    : <a   href="Rawflickr.TPeople.html">TPeople</a> read GetPeople;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TPeople.html">TPeople</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Photos"></a><code>property <b>Photos</b>    : <a   href="Rawflickr.TPhotos.html">TPhotos</a> read GetPhotos;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TPhotos.html">TPhotos</a> instance...</p>
+<p>
+ and, through it, to <a class="normal"  href="Rawflickr.TComments.html">TComments</a>, <a class="normal"  href="Rawflickr.TGeoData.html">TGeoData</a>, <a class="normal"  href="Rawflickr.TLicenses.html">TLicenses</a>, <a class="normal"  href="Rawflickr.TNotes.html">TNotes</a>, <a class="normal"  href="Rawflickr.TTransform.html">TTransform</a> and <a class="normal"  href="Rawflickr.TUploader.html">TUploader</a> instances.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Photosets"></a><code>property <b>Photosets</b> : <a   href="Rawflickr.TPhotosets.html">TPhotosets</a> read GetPhotosets;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TPhotosets.html">TPhotosets</a> instance...</p>
+<p>
+ and, through it, to a <a class="normal"  href="Rawflickr.TComments.html">TComments</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Places"></a><code>property <b>Places</b> : <a   href="Rawflickr.TPlaces.html">TPlaces</a> read GetPlaces;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TPlaces.html">TPlaces</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Prefs"></a><code>property <b>Prefs</b> : <a   href="Rawflickr.TPrefs.html">TPrefs</a> read GetPrefs;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TPrefs.html">TPrefs</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Reflection"></a><code>property <b>Reflection</b>: <a   href="Rawflickr.TReflection.html">TReflection</a> read GetReflection;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TReflection.html">TReflection</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Tags"></a><code>property <b>Tags</b>      : <a   href="Rawflickr.TTags.html">TTags</a> read GetTags;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TTags.html">TTags</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Test"></a><code>property <b>Test</b>      : <a   href="Rawflickr.TTest.html">TTest</a> read GetTest;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TTest.html">TTest</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="Urls"></a><code>property <b>Urls</b>      : <a   href="Rawflickr.TUrls.html">TUrls</a> read GetUrls;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Provides access to a <a class="normal"  href="Rawflickr.TUrls.html">TUrls</a> instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="SignAll"></a><code>property <b>SignAll</b>: Boolean read FSignAll write SetSignAll default False;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Sets <code>SignAll</code> to <code>True</code> or <code>False</code> coordinately for all <a class="normal"  href="Rawflickr.TRESTApi.html">TRESTApi</a> descendant members of TFlickr.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a   href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><a name="OnAuthorize"></a><code>property <b>OnAuthorize</b>: <a   href="Rawflickr.html#TAuthorizeEvent">TAuthorizeEvent</a> read FOnAuthorize
+                                          write FOnAuthorize;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+End user participation needed.</p>
+<p>
+ This event is called from <a class="normal"  href="Rawflickr.TFlickrEx.html#Authorize">Authorize</a> if the authentication process reachs the point in which it needs the participation of the user i.e. when we need to navigate to Flickr (or 23) prior to request a token. For details see <a  target="_parent" href="http://www.flickr.com/services/api/misc.userauth.html">http://www.flickr.com/services/api/misc.userauth.html</a> Though the library offers a default event handler for this task, don't rely on it; being non-portable in nature, it'll probably dissapear in one of the next releases.</p>
+</td></tr>
+</table>
+<p><a href="http://rawflickr.webhop.net" target="_top">Rawflickr</a> is copyright &copy; 2005-2008 Luis Caballero Martínez. All Rights Reserved.<br>
+</p>
+<hr noshade size="1"><span class="appinfo"><em>Generated by <a  target="_parent" href="http://pasdoc.sourceforge.net/">PasDoc 0.10.0</a> on 2008-06-28 04:35:30</em>
+</span>
+</body></html>
