@@ -1,0 +1,9 @@
+{$Id$}
+
+= Frequently Asked Questions
+
+Q: Why is this FAQ empty?
+
+A: Because nobody has ever asked anything yet.
+
+

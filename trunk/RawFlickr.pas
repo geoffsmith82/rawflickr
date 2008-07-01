@@ -1,3 +1,4 @@
+{ $Id$ }
 {--------------------------------------------------------------------------}
 {                                                                          }
 { Rawflickr - Flickr API Interface Library v1.2                            }
@@ -25,7 +26,7 @@
  @abstract(Basic (raw) wrapper interface to Flickr's REST API)
  @author(Luis Caballero <luiscamar@users.sourceforge.net>)
  @created(2005-09-16)
- @lastmod(2008-04-27)
+ @lastmod(2008-06-29)
 
  This unit contains a set of wrapper classes to interface with Flickr
  through the REST Flickr API. There is also limited support for interfacing
@@ -541,7 +542,7 @@ type
    [-90..90] for latitude, or the whole box will be discarded.}
   TBoundBox = record
     MinLongitude,MinLatitude,
-    MaxLongitude, MaxLatitude: Real;
+    MaxLongitude, MaxLatitude: Double;
   end;
 
   {@abstract(Accuracy level of location information)
@@ -555,12 +556,25 @@ type
     )
     while "0" (zero) represents an "unspecified" value}
   TGeoAccuracy = 0..16;
-  TValidGeoFields = (gfNone, gfBbox, gfPlaces);
 
-  {@abstract(Geo related search terms)}
+  {@abstract(Values used in @link(TGeoTerms.validFields))}
+  TValidGeoFields = (gfBbox, gfPlaces, gfHasGeo, gfRadial);
+
+  {Record used for "radial" geo-searches}
+  TRadialQuery = record
+    lat, lon: Double;
+    radius: ShortInt;
+    radiusUnits: String;
+  end;
+
+  {@abstract(Geo related search terms)
+   This record all geo-location related search terms. To select which fields
+   are used, set @link(validFields) acordingly.}
   TGeoTerms = record
-    validFields: TValidGeoFields;
+    validFields: set of TValidGeoFields;
+    hasGeo: Boolean;            {LCM: 2008-06-29}{}
     bbox: TBoundBox;
+    RadialQuery: TRadialQuery;  {LCM: 2008-06-29}{}
     woeId,
     placeId: String;
     accuracy: TGeoAccuracy;
@@ -805,7 +819,7 @@ type
     function getLocation(photoId: String): String;
     {Implements flickr.photos.geo.setLocation}
     function setLocation(photoId: String;
-                         Latitude, Longitude: Real;
+                         Latitude, Longitude: Double;
                          Accuracy: TGeoAccuracy): String;
     {Implements flickr.photos.geo.removeLocation}
     function removeLocation(photoId: String): String;
@@ -966,7 +980,7 @@ type
     {Implements flickr.places.find}
     function find(query: String): String;
     {Implements flickr.places.findByLatLon}
-    function findByLatLon(Latitude, Longitude: Real;
+    function findByLatLon(Latitude, Longitude: Double;
                           Accuracy: TGeoAccuracy = 0): String;
     {Implements flickr.places.resolvePlaceId}
     function resolvePlaceId(placeId: String): String;
@@ -1440,7 +1454,7 @@ end;
 {LCM 2008-04-08}
 {@abstract(Converts Lat/Lon coordinates to a string w/ the specified precision)
  Needed to correct localized decimal points, like the Spanish "," }
-function CoordToStr(LatLon: Real; Precision: Integer = 6): String;
+function CoordToStr(LatLon: Double; Precision: Integer = 6): String;
 var s: String;
 begin
   s := Format('%.*f',[Precision, LatLon]);
@@ -2151,7 +2165,7 @@ begin
   Result := SimpleCall('flickr.photos.search');
 end;
 
-{New flanged, fuly implemented flickr.photos.search}
+{New flanged, full implementation of flickr.photos.search}
 function TPhotos.search(userId, groupId: String; SearchTerms: TSearchTerms;
   Uploaded, Taken: TDateRange; GeoTerms: TGeoTerms;
   ContentTerms: TContentFilter; extra: TXtraParams;
@@ -2177,27 +2191,35 @@ begin
     // Date terms
     AddDateMinMax(FRequest, Uploaded, dkPosted);
     AddDateMinMax(FRequest, Taken, dkTaken);
-    // Location terms
+    // Geo-location terms
+    {LCM: 2008-06-29 - Mod bc the change of type of validFields and
+                       additions in TGeoTerms}
     with GeoTerms do begin
-      case GeoTerms.validFields of
-      gfBbox: if CheckBBox(BBox) then begin
+      if gfHasGeo in validFields then begin
+        Optional['has_geo'] := BoolStr(hasGeo, True);
+      end;
+      if (gfBbox in validFields) and CheckBBox(BBox) then begin
           box := Format('%s,%s,%s,%s',
                         [CoordToStr(BBox.MinLongitude),
                          CoordToStr(BBox.MinLatitude),
                          CoordToStr(BBox.MaxLongitude),
                          CoordToStr(BBox.MaxLatitude)]);
           Optional['bbox'] := box;
-          if (accuracy > 0) then
-            Optional['accuracy'] := IntToStr(accuracy);
-        end;
-      gfPlaces: begin
+      end;
+      {NOTE: No check is made on the coordinates??}
+      if gfRadial in GeoTerms.validFields then begin
+        Optional['lat'] := CoordToStr(RadialQuery.lat);
+        Optional['lon'] := CoordToStr(RadialQuery.lon);
+        Optional['radius'] := IntToStr(RadialQuery.radius);
+        Optional['radius_units'] := RadialQuery.radiusUnits
+      end;
+      if gfPlaces in GeoTerms.validFields then begin
           Optional['woe_id'] := woeId;
           Optional['place_id'] := placeId;
-            if (accuracy > 0) then
-              Optional['accuracy'] := IntToStr(accuracy);
-        end;
-      end; {case GeoTerms.validFields ... }
-    end; {with GeoTerms do ... }
+      end;
+      if (accuracy > 0) then
+        Optional['accuracy'] := IntToStr(accuracy);
+   end; {with GeoTerms do ... }
     with ContentTerms do begin
       if contentType <> ctNone then
         Optional['content_type'] := chr($30 + Ord(contentType));
@@ -2632,7 +2654,7 @@ begin
   Result := SimpleCall('flickr.photos.geo.getLocation')
 end;
 
-function TGeoData.setLocation(photoId: String; Latitude, Longitude: Real;
+function TGeoData.setLocation(photoId: String; Latitude, Longitude: Double;
                               Accuracy: TGeoAccuracy): String;
 begin
   with FRequest do begin
@@ -3014,7 +3036,7 @@ begin
   Result := SimpleCall('flickr.places.find');
 end;
 
-function TPlaces.findByLatLon(Latitude, Longitude: Real;
+function TPlaces.findByLatLon(Latitude, Longitude: Double;
                               Accuracy: TGeoAccuracy): String;
 begin
   with FRequest do begin
