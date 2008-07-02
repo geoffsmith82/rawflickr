@@ -2,11 +2,11 @@
 
 = Rawflickr Delphi Library =
 
-Rawflickr is a library designed to allow Delphi programs to access the Flickr API as if it were a set of local function. It does so by providing a set of classes, one for each group of Flickr API methods (auth, blogs, photos, ...) and making the methods inside each class mimic almost exactly the corresponding API method, though using comfortable ObjectPascal types rather than raw strings.
+Rawflickr is a library designed to allow Delphi programs to access the Flickr API as if it were a set of local function. It does so by providing a set of classes, one for each group of Flickr API methods (auth, blogs, photos, ...) and making the methods inside each class mimic almost exactly the corresponding API method, though using comfortable !ObjectPascal types rather than raw strings.
 
 == License ==
 
-This library is free, open source software released under a Mozilla Public License 1.1 and all the third-party libraries used or referenced (except, of course, Borland's ones) are also open source, released under similar licenses.
+This library is free, open source software released under a *Mozilla Public License 1.1* and all the third-party libraries used or referenced (except, of course, Borland's ones) are also open source, released under similar licenses.
 
 == Features ==
   * Very easy to install and use. (But there is a Beginners Guide in preparation)
