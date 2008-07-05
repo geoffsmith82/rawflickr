@@ -1,4 +1,5 @@
 {$IFDEF FPC}{$MODE DELPHI}{$ENDIF FPC}
+{ $Id$ }
 (************************************************************************
 
     Date/Time Extension for Delphi
@@ -33,7 +34,7 @@
  @created(1998-05-27)
  @lastmod(2007-01-18)
 
- Copyright 1998, 2005 by Luis Caballero Martínez. All rights reserved.
+ Copyright 1998, 2007 by Luis Caballero Martínez. All rights reserved.
  Released under a Mozilla Public License 1.1
 
 }

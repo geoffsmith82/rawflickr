@@ -19,6 +19,6 @@ The Initial Developer of the Original Code is:
 
 The Initial Developer of the Original Code is Luis Caballero Martínez.
 
-Portions created by the Luis Caballero Martínez are
+Portions created by the the Initial Developer are
 Copyright (C) 2005,2008 Luis Caballero Martínez. All Rights Reserved.
 ***** END LICENSE BLOCK *****

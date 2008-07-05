@@ -1,4 +1,5 @@
 {$IFDEF FPC}{$MODE DELPHI}{$ENDIF FPC}
+{ $Id$ }
 (************************************************************************
 
     Strings Extension - String Array Objects for Delphi
