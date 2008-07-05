@@ -1,5 +1,3 @@
-*Important Note!* This project isn't well up yet, but it'll be, soon. Thanks for your patience. 
-
 = Rawflickr Delphi Library =
 
 Rawflickr is a library designed to allow Delphi programs to access the Flickr API as if it were a set of local function. It does so by providing a set of classes, one for each group of Flickr API methods (auth, blogs, photos, ...) and making the methods inside each class mimic almost exactly the corresponding API method, though using comfortable !ObjectPascal types rather than raw strings.
@@ -20,11 +18,9 @@ This library is free, open source software released under a *Mozilla Public Lice
   * (planned) Support for either Indy or Synapse as networking libraries.
   * (planned) Multiplatform support through compatibility with Delphi, Kylix and Lazarus/FPC.
 
-
-
 == Requirements ==
 
-To use this ibrary you'll need:
+To use this library you'll need:
 
   * Delphi 5 (3?) or higher or Kylix 3 (planned) or Lazarus/FPC (planned)
   * Internet Direct (Indy) version 9 (compat. with Indy 10 planned) -or-
@@ -37,3 +33,6 @@ To use this ibrary you'll need:
 === A bit of legalese ===
 
 Flickr is a trademark of Yahoo, Inc. This library was designed to interface with Flickr(tm) services, but it's in no way related to or endorsed by Flickr or Yahoo themselves.
+
+----
+{ $Id }
