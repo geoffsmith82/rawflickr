@@ -26,7 +26,7 @@
  @abstract(Basic (raw) wrapper interface to Flickr's REST API)
  @author(Luis Caballero <luiscamar@users.sourceforge.net>)
  @created(2005-09-16)
- @lastmod(2008-06-29)
+ @lastmod(2009-03-24)
 
  This unit contains a set of wrapper classes to interface with Flickr
  through the REST Flickr API. There is also limited support for interfacing
@@ -68,7 +68,7 @@ type
 
   {@abstract(Type of @link(TWebService.ServiceType))
    @seealso(TWebService)}
-  TServiceType = (stFlickr, st23, stOther);
+  TServiceType = (stNone, stFlickr, st23, stOther);
 
   {LCM: 2007-01-07}
   {@abstract(Type used to index the array of endpoint's URLs.)
@@ -873,6 +873,9 @@ type
   {@inherited descendant for upload errors}
   EFlickrUploadError = class(EFlickrError);
 
+  {Use to bypass the default 'searchability' on uploads}
+  TSearchStatus = (ssIgnore, ssSearchable, ssHidden);
+
   {Implements flickr.photos.upload.* and the Photo Upload/Replace API }
   TUploader = class(TRESTApi)
   //private
@@ -922,6 +925,9 @@ type
                     Description: String = '';
                     Tags: String = '';
                     Visibility: TVisibility = [];
+                    Safety: TSafetyLevel = slIgnore;
+                    Content: TContentType = ctNone;
+                    hideIt: TSearchStatus = ssIgnore;
                     Asynchronous: Boolean = False): String;
     {Replaces an already uploaded photo for a new one.
      @Seealso(TUploader.Upload to know how @code(Stream) and
@@ -3681,7 +3687,7 @@ begin
   FSecret := ASecret;
   FToken := '';
   FLevel := '';
-  FService := TWebService.Create(AService);
+  {FService := TWebService.Create(AService);{Already created by inheritance}
   FUser      := TBasicUser.Create;
   FAuth      := nil;
   FActivity  := nil;
@@ -3706,6 +3712,7 @@ begin
   FService.Free;
   FUser.Free;
   FAuth.Free;
+  FActivity.Free;
   FBlogs.Free;
   FContacts.Free;
   FFavorites.Free;
