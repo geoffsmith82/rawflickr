@@ -883,7 +883,8 @@ type
     {!Builds a proper FRequest to be used with the Upload API.}
     procedure GetUploadRequest(Title: String; Description: String;
                                Tags: String; Visibility: TVisibility;
-                               Asynchronous: Boolean);
+                               Safety: TSafetyLevel; Content: TContentType;
+                               hideIt: TSearchStatus; Asynchronous: Boolean);
     {!Builds a proper FRequest to be used with the Replace API.}
     procedure GetReplaceRequest(photoId: String; Asynchronous: Boolean);
   public
@@ -2790,7 +2791,8 @@ end;
 { Prepare a signed request to transfer as form-data }
 procedure TUploader.GetUploadRequest(Title: String; Description: String;
                                  Tags: String; Visibility: TVisibility;
-                                 Asynchronous: Boolean);
+                                 Safety: TSafetyLevel; Content: TContentType;
+                                 hideIt: TSearchStatus; Asynchronous: Boolean);
 begin
   with FRequest do begin
     Initialize;
@@ -2804,6 +2806,12 @@ begin
       Required['is_friend'] := BoolStr((toFriends in Visibility), True);
       Required['is_family'] := BoolStr((toFamily in Visibility), True);
     end;
+    if Safety <> slIgnore then
+      Optional['safety_level'] := IntToStr(Ord(Safety));
+    if Content <> ctNone then
+      Optional['content_type'] := IntToStr(Ord(Content));
+    if hideIt <> ssIgnore then
+      Optional['hidden'] := IntToStr(Ord(hideIt));
     Optional['async'] := BoolStr(Asynchronous, False);
     Required['api_sig'] := GetSignature(FRequest, Owner.Secret);
   end;
@@ -2840,13 +2848,17 @@ function TUploader.Upload(Stream: TStream; FileName: String;
                         Description: String = '';
                         Tags: String = '';
                         Visibility: TVisibility = [];
+                        Safety: TSafetyLevel = slIgnore;
+                        Content: TContentType = ctNone;
+                        hideIt: TSearchStatus = ssIgnore;
                         Asynchronous: Boolean = False): String;
+
 var MFData: TIdMultiPartFormDataStream;
     i: Integer;
     Name: String;
 begin
-  GetUploadRequest(Title, Description, Tags, Visibility, Asynchronous);
-
+  GetUploadRequest(Title, Description, Tags, Visibility, Safety, Content,
+                   hideIt, Asynchronous);
   MFData := TIdMultiPartFormDataStream.Create;
   { Convert the request (+signature) to form fields }
   for i := 0 to FRequest.Count - 1 do begin
