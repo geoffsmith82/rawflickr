@@ -1,4 +1,8 @@
+{ $Id$ }
 program Upload;
+
+{%File 'MyAPICONST.INC'}
+{%File 'APICONST.INC'}
 
 uses
   Forms,

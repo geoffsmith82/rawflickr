@@ -26,7 +26,7 @@
  @abstract(Basic (raw) wrapper interface to Flickr's REST API)
  @author(Luis Caballero <luiscamar@users.sourceforge.net>)
  @created(2005-09-16)
- @lastmod(2009-03-24)
+ @lastmod(2009-03-31)
 
  This unit contains a set of wrapper classes to interface with Flickr
  through the REST Flickr API. There is also limited support for interfacing
@@ -53,9 +53,10 @@
  )
 }
 
-unit Rawflickr; {@LIB -nRawFlickr -v120 -oLCM -pD5E.XP2}
+unit Rawflickr; {@LIB -nRawflickr -v121 -oLCM -pD5E.XP2}
 
 { TODO -oLCM : See rawflickr.todo.txt }
+{$DEFINE DELPHI}
 
 interface
 
@@ -400,6 +401,16 @@ type
     {Class constructor; see @link(TRESTApi.Create)}
     constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
   end;
+
+  {@abstract(Implements flickr.commons.*)}
+  TCommons = class(TRESTApi)
+  public
+    {Implements flickr.commons.getInstitutions}
+    function getInstitutions: String;
+    {Class constructor; see @link(TRESTApi.Create)}
+    constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
+  end;
+
 
   {Implements flickr.contacts.*}
   TContacts = class(TRESTApi)
@@ -1116,6 +1127,7 @@ type
     FAuth      : TAuth;
     FActivity  : TActivity;
     FBlogs     : TBlogs;
+    FCommons   : TCommons;
     FContacts  : TContacts;
     FFavorites : TFavorites;
     FGroups    : TGroups;
@@ -1132,6 +1144,7 @@ type
     function GetAuth: TAuth;
     function GetActivity: TActivity;
     function GetBlogs: TBlogs;
+    function GetCommons: TCommons;
     function GetContacts: TContacts;
     function GetFavorites: TFavorites;
     function GetGroups: TGroups;
@@ -1153,6 +1166,8 @@ type
     property Activity  : TActivity read GetActivity;
     {@abstract(Provides access to a @link(TBlogs) instance.)}
     property Blogs     : TBlogs read GetBlogs;
+    {@abstract(Provides access to a @link(TCommons) instance.)}
+    property Commons   : TCommons read GetCommons;
     {@abstract(Provides access to a @link(TContacts) instance.)}
     property Contacts  : TContacts read GetContacts;
     {@abstract(Provides access to a @link(TFavorites) instance.)}
@@ -1826,6 +1841,22 @@ begin
 end;
 
 constructor TBlogs.Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
+begin
+  inherited;
+end;
+
+
+{**************************************}
+{*    TCommons = class(TRESTApi)      *}
+{**************************************}
+
+function TCommons.getInstitutions: String;
+begin
+  FRequest.Initialize;
+  Result := SimpleCall('flickr.commons.getInstitutions');
+end;
+
+constructor TCommons.Create(AOwner: TFlickr; Sign: TSignOption);
 begin
   inherited;
 end;
@@ -3504,6 +3535,13 @@ begin
   Result := FBlogs;
 end;
 
+function TFlickrEx.GetCommons: TCommons;
+begin
+  if FCommons = nil then
+    FCommons := TCommons.Create(Self, FSignOption);
+  Result := FCommons;
+end;
+
 function TFlickrEx.GetContacts: TContacts;
 begin
   if FContacts = nil then
@@ -3601,6 +3639,7 @@ begin
            else FSignOption := sgnRequired;
   if Assigned(FActivity) then FActivity.SignAll := Value;
   if Assigned(FBlogs) then FBlogs.SignAll := Value;
+  if Assigned(FCommons) then FCommons.SignAll := Value;
   if Assigned(FContacts) then FContacts.SignAll := Value;
   if Assigned(FFavorites) then FFavorites.SignAll := Value;
   if Assigned(FGroups) then FGroups.SignAll := Value;
@@ -3608,6 +3647,7 @@ begin
   if Assigned(FPhotos) then FPhotos.SignAll := Value;
   if Assigned(FPhotosets) then FPhotosets.SignAll := Value;
   if Assigned(FPlaces) then FPlaces.SignAll := Value;
+  if Assigned(FPrefs) then FPrefs.SignAll := Value; {LCM: 2009/03/30 Bug}
   if Assigned(FReflection) then FReflection.SignAll := Value;
   if Assigned(FTags) then FTags.SignAll := Value;
   if Assigned(FTest) then FTest.SignAll := Value;
@@ -3636,27 +3676,20 @@ begin
   else begin
     Reason := arOther;
     Perms := AnsiLowerCase(Perms); { Just in case... ;-) }
-    if Token <> '' then begin
+    if Token <> '' then begin {If there's a token, check it}
       try
         Auth.checkToken(Token);
-        // LCM 2006-11-22
         GotLevel  := LevelCode(Level);
         WantLevel := LevelCode(Perms);
         if (GotLevel >= WantLevel) then Result := True
                                    else Reason := arLevelPromotion;
-(*      // LCM 2006-11-22; Replaces:
-        if (Level = Perms) or
-           ((Level = 'delete') and
-            ((Perms = 'write') or (Perms = 'read'))) or
-           ((level = 'write') and (Perms = 'read')) then Result := True
-        else Reason := arLevelPromotion;
-*)
       except
         on e: EFlickrAuthError do
           if e.Code = 98 then Reason := arInvalidLoginOrToken
                          else raise;
       end;
-    end else Reason := arNoToken;
+    end else
+      Reason := arNoToken;
 
     if not Result then begin
       Cancel := False;
@@ -3672,6 +3705,7 @@ begin
       if not Cancel then begin
         Retry := FFrobRetries;
         repeat
+(**
           with Auth do try
             getToken(FFrob);
             Result := True;
@@ -3680,7 +3714,20 @@ begin
               Dec(Retry);
               if Retry > 0 then Sleep(1000); {*DEPENDS: windows.pas}
             end; { on EFlickrError }
-          end;{ with Auth }
+          end;{ try (with Auth do ...)}
+(**)
+          try
+            Auth.getToken(Auth.FFrob);
+            Result := True;
+          except
+            on EFlickrError do begin
+              Dec(Retry);
+              if Retry > 0 then Sleep(1000); {*DEPENDS: windows.pas}
+            end; { on EFlickrError }
+          end;{ try ... }
+(**)
+
+
         until (Retry <= 0) or Result;
         {If there was an error, it can be re-raised with
          Flickr.Auth.CheckError(LastResponse)}
@@ -3704,6 +3751,7 @@ begin
   FAuth      := nil;
   FActivity  := nil;
   FBlogs     := nil;
+  FCommons   := nil;
   FContacts  := nil;
   FFavorites := nil;
   FGroups    := nil;
@@ -3726,6 +3774,7 @@ begin
   FAuth.Free;
   FActivity.Free;
   FBlogs.Free;
+  FCommons.Free;
   FContacts.Free;
   FFavorites.Free;
   FGroups.Free;
