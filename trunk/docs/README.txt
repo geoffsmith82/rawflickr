@@ -4,7 +4,8 @@ Rawflickr is a library designed to allow Delphi programs to access the Flickr AP
 
 == License ==
 
-This library is free, open source software released under a *Mozilla Public License 1.1* and all the third-party libraries used or referenced (except, of course, Borland's ones) are also open source, released under similar licenses.
+This library is free, open source software released under a *Mozilla Public License 1.1*.
+All the third-party libraries used or referenced (except, of course, Borland's ones) are also open source, released under similar licenses.
 
 == Features ==
   * Very easy to install and use. (But there is a Beginners Guide in preparation)
@@ -22,12 +23,13 @@ This library is free, open source software released under a *Mozilla Public Lice
 
 To use this library you'll need:
 
-  * Delphi 5 (3?) or higher or Kylix 3 (planned) or Lazarus/FPC (planned)
+  * Delphi 5 (3?) or higher, Kylix 3 (planned) or Lazarus/FPC (planned)
   * Internet Direct (Indy) version 9 (compat. with Indy 10 planned) -or-
   * Synapse 37+ (in development)
   * MD5.pas, by M. Fichtner <http://www.fichtner.net/delphi/md5/> (included in the package)
   * LibXMLParser, by S. Heymann <http://www.destructor.de> (included in the package)
-  * API key & shared secret if your target is Flickr:  http://www.flickr.com/services/api/keys/
+  * API key & shared secret if your target is Flickr:
+    http://www.flickr.com/services/api/keys/
 
 ----
 === A bit of legalese ===

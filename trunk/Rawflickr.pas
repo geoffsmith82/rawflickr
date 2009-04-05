@@ -1,8 +1,15 @@
+{$A+,B-,C+,D+,E-,F-,G+,H+,I+,J+,K-,L+,M-,N+,O+,P+,Q-,R-,S-,T-,U-,V+,W-,X+,Y+,Z1}
+{$MINSTACKSIZE $00004000}
+{$MAXSTACKSIZE $00100000}
+{$IMAGEBASE $00400000}
+{$APPTYPE GUI}
 { $Id$ }
 {--------------------------------------------------------------------------}
 {                                                                          }
 { Rawflickr - Flickr API Interface Library v1.2                            }
 {                                                                          }
+{ ***** BEGIN LICENSE BLOCK *****                                          }
+{ Version: MPL 1.1                                                         }
 { The contents of this archive are subject to the Mozilla Public License   }
 { Version 1.1 (the "License"); you may not use this file except in         }
 { compliance with the License. You may obtain a copy of the License        }
@@ -20,6 +27,7 @@
 {                                                                          }
 { Portions created by the Initial Developer are                            }
 { Copyright (C) 2005-2008 Luis Caballero Martínez. All Rights Reserved.    }
+{ ***** END LICENSE BLOCK *****                                            }
 {                                                                          }
 {--------------------------------------------------------------------------}
 {
@@ -43,7 +51,7 @@
 
  @bold(Maintainers:)
  @unorderedlist(
- @item LCM : Luis Caballero <rawflickr@lycos.es>
+ @item LCM : Luis Caballero <sillyluis>
  )
  @bold(Credits:)
  @unorderedlist(
@@ -448,12 +456,15 @@ type
   TFavorites = class(TRESTApi)
   public
     {Implements flickr.favorites.getList (record variant)}
-    function getList(userId: String; extra: TXtraParams): String; overload;
+    function getList(userId: String;  faveDate: TDateRange;
+                     extra: TXtraParams): String; overload;
     {Implements flickr.favorites.getList (API-like variant)}
-    function getList(userId: String; extras: String=''; perPage: Integer = 0;
+    function getList(userId: String; faveDate: TDateRange = nil;
+                     extras: String=''; perPage: Integer = 0;
                      Page: Integer = 0): String; overload;
     {Implements flickr.favorites.getPublicList}
-    function getPublicList(userId: String; extra: TXtraParams): String;
+    function getPublicList(userId: String; faveDate: TDateRange;
+                           extra: TXtraParams): String;
     {Implements flickr.favorites.Add}
     function Add(PhotoId: String): String;
     {Implements flickr.favorites.Remove}
@@ -461,14 +472,19 @@ type
     constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
   end;
 
+  TMembers = class; {! forward }
   TPools = class; {! forward }
 
   {Implements flickr.groups.*}
   TGroups = class(TRESTApi)
   private
+    FMembers: TMembers;
     FPools: TPools;
+    function GetMembers: TMembers;
     function GetPools: TPools;
   public
+    {Provides access to a @link(TMembers) instance}
+    property Members: TMembers read GetMembers;
     {Provides access to a @link(TPools) instance}
     property Pools: TPools read GetPools;
     {Implements flickr.groups.browse}
@@ -481,6 +497,15 @@ type
                     Plus18: Boolean = True): String;
     constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
     destructor Destroy; override;
+  end;
+
+  {Implements flickr.groups.members.*}
+  TMembers = class(TRESTApi)
+  public
+    {Implements flickr.groups.members.getList}
+    function getList(groupId: String; memberTypes: String = '';
+                     perPage: Integer = 0; page: Integer = 0): String;
+    constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
   end;
 
   {Implements flickr.groups.pools.*}
@@ -505,6 +530,32 @@ type
   public
     {Implements flickr.interestingness.gtList}
     function getList(ADate: TDateTime; extra: TXtraParams): String;
+    constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
+  end;
+
+  {Implements flickr.machinetags.*}
+  TMachineTags = class(TRESTApi)
+    {Implements flickr.machinetags.getNamespaces}
+    function getNamespaces(predicate: String = '';
+                           perPage: Integer = 0; page: Integer = 0): String;
+    {Implements flickr.machinetags.getPairs}
+    function getPairs(namespace: String = ''; predicate: String = '';
+                      perPage: Integer = 0; page: Integer = 0): String;
+    {Implements flickr.machinetags.getPredicates}
+    function getPredicates(namespace: String = '';
+                      perPage: Integer = 0; page: Integer = 0): String;
+    {Implements flickr.machinetags.getValues}
+    function getValues(namespace: String; predicate: String;
+                       perPage: Integer = 0; page: Integer = 0): String;
+    constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
+  end;
+
+  {Implements flickr.panda.*}
+  TPanda = class(TRESTApi)
+    {Implements flickr.panda.getList}
+    function getList: String;
+    {Implements flickr.panda.getPhotos}
+    function getPhotos(pandaName: String): String;
     constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
   end;
 
@@ -635,8 +686,13 @@ type
                            soTakenAsc, soTakenDesc,
                            soInterestAsc, soInterestDesc,
                            soRelevance);
-  {Kind of date/time requested or returned.}
-  TDateKind = (dkTaken, dkPosted, dkUpdated);
+  {@abstract(Kind of date/time requested or returned.)
+   Do note that values and use changed on 2009-04-01 (r10): where previously
+   you'd use:
+   * dkTaken now should be dkMySQL (with string 'taken', if needed)
+   * dkPosted now should be dkUnix (with string 'upload', if needed)
+  }
+  TDateKind = (dkMySQL, dkUnix);
   {Accuracy level of a date/time.
    At the date of this writing there are only three valid values, (see the
    constants dgExact, dgMonth and dgYear); but according to Flickr docs (see
@@ -672,7 +728,7 @@ type
     {Provides access to a @link(TUploader) instance.
      To avoid a name clash (and repetition), this property isn't named as
      its Flickr counterpart flickr.photos.upload}
-    Uploader: TUploader; {@WARNING: Doesn't follow naming convention}
+    Uploader: TUploader; {@WARNING: Non-standard name}
     // methods related to general photo lists
     {@abstract(Implements flickr.photos.search)
      You can use this old, limited variant for simple searches, more or less
@@ -804,7 +860,7 @@ type
     {Implements flickr.*.comments.getList
     @param(entityId corresponds to either photo_id or photoset_id, depending
              of @link(BaseIdName))}
-    function getList(entityId: String): String;
+    function getList(entityId: String; commentDate: TDateRange = nil): String;
     {Implements flickr.*.comments.addComment}
     function addComment(entityId, text: String): String;
     {Implements flickr.*.comments.deleteComment}
@@ -822,18 +878,31 @@ type
    that the name was too short and prone to namespace collisions.}
   {@abstract(Implements flickr.photos.geo.*)}
   TGeoData = class(TRESTApi)
-    {Implements flickr.photos.geo.getPerms}
-    function getPerms(photoId: String): String;
-    {Implements flickr.photos.geo.setPerms}
-    function setPerms(photoId: String; ViewPerm: TViewPerm): String;
     {Implements flickr.photos.geo.getLocation}
     function getLocation(photoId: String): String;
     {Implements flickr.photos.geo.setLocation}
     function setLocation(photoId: String;
                          Latitude, Longitude: Double;
-                         Accuracy: TGeoAccuracy): String;
+                         Accuracy: TGeoAccuracy;
+                         Context: ShortInt = 0): String;
     {Implements flickr.photos.geo.removeLocation}
     function removeLocation(photoId: String): String;
+    {Implements flickr.photos.geo.batchCorrectLocation}
+    function batchCorrectLocation(Latitude, Longitude: Double;
+                                  Accuracy: TGeoAccuracy;
+                                  placeId, woeId: String): String;
+    {Implements flickr.photos.geo.correctLocation}
+    function correctLocation(photoId, placeId, woeId: String): String;
+    {Implements flickr.photos.geo.getPerms}
+    function getPerms(photoId: String): String;
+    {Implements flickr.photos.geo.setPerms}
+    function setPerms(photoId: String; ViewPerm: TViewPerm): String;
+    {Implements flickr.photos.geo.photosForLocation}
+    function photosForLocation(Latitude, Longitude: Double;
+                               Accuracy: TGeoAccuracy;
+                               extra: TXtraParams): String;
+    {Implements flickr.photos.geo.setContext}
+    function setContext(photoId: String; Context: ShortInt): String;
     constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
   end;
 
@@ -991,7 +1060,7 @@ type
     function getContext(setId, photoId: String): String;
     constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
   end;
-{ DONE 5 -oLCM -cBASE : New places & prefs classes }
+
   {Implements flickr.places.*}
   TPlaces = class(TRESTApi) {LCM 2008-04-08}
   public
@@ -1000,10 +1069,25 @@ type
     {Implements flickr.places.findByLatLon}
     function findByLatLon(Latitude, Longitude: Double;
                           Accuracy: TGeoAccuracy = 0): String;
+(* TODO 5 -oLCM :  Implement *
+    * flickr.places.getChildrenWithPhotosPublic
+    * flickr.places.getInfo
+    * flickr.places.getInfoByUrl
+    * flickr.places.getPlaceTypes
+    * flickr.places.getShapeHistory
+    * flickr.places.placesForBoundingBox
+    * flickr.places.placesForContacts
+    * flickr.places.placesForTags
+    * flickr.places.placesForUser
+(**)
     {Implements flickr.places.resolvePlaceId}
     function resolvePlaceId(placeId: String): String;
     {Implements flickr.places.resolvePlaceURL}
     function resolvePlaceURL(placeURL: String): String;
+
+(* TODO 5 -oLCM :  Implement *
+    * flickr.places.tagsForPlace
+(**)
     {Class constructor, for completeness sake}
     constructor Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
   end;
@@ -1046,6 +1130,10 @@ type
   TTags = class(TRESTApi)
   //private
   public
+    {Implements flickr.tags.getClusterPhotos}
+    function getClusterPhotos(Tag, clusterId: String): String;
+    {Implements flickr.tags.getClusters}
+    function getClusters(Tag: String): String;
     {Implements flickr.tags.getHotList}
     function getHotList(period: String=''; count: Integer = 0): String;
     {Implements flickr.tags.getListPhoto}
@@ -1132,6 +1220,8 @@ type
     FFavorites : TFavorites;
     FGroups    : TGroups;
     FInteresting: TInterestingness;
+    FMachineTags: TMachineTags;
+    FPanda     : TPanda;
     FPeople    : TPeople;
     FPhotos    : TPhotos;
     FPhotosets : TPhotosets;
@@ -1149,6 +1239,8 @@ type
     function GetFavorites: TFavorites;
     function GetGroups: TGroups;
     function GetInterestingness: TInterestingness;
+    function GetMachineTags: TMachineTags;
+    function GetPanda: TPanda;
     function GetPeople: TPeople;
     function GetPhotos: TPhotos;
     function GetPhotosets: TPhotosets;
@@ -1177,6 +1269,10 @@ type
     property Groups    : TGroups read GetGroups;
     {@abstract(Provides access to a @link(TInterestingness) instance.)}
     property Interestingness: TInterestingness read GetInterestingness;
+    {@abstract(Provides access to a @link(TMachineTags) instance.)}
+    property MachineTags: TMachineTags read GetMachineTags;
+    {@abstract(Provides access to a @link(TPanda) instance.)}
+    property Panda: TPanda read GetPanda;
     {@abstract(Provides access to a @link(TPeople) instance.)}
     property People    : TPeople read GetPeople;
     {@abstract(Provides access to a @link(TPhotos) instance...)
@@ -1262,18 +1358,38 @@ const
   {@abstract(Services' names referred to by @link(TFlickr.Service))
    Do note that due to the change of the type of @link(TFlickr.Service), you
    must now index this array with a @link(TServiceType) variable.}
-  ServiceNames: Array [stFlickr..stOther] of String = ('flickr', '23', 'other');
+  ServiceNames: Array [stNone..stOther] of String = ('None', 'flickr',
+                                                     '23', 'other');
 
   {@abstract(Base URI of the known services API endpoints.)
    These URIs are used to set the default @link(TWebService.BaseURI) after
    changing @link(TWebService.ServiceType).}
-  KnownBaseURI: array [stFlickr..stOther] of string =
-  ('http://api.flickr.com/', 'http://www.23hq.com/', '');
+  KnownBaseURI: array [stNone..stOther] of string =
+   ('', 'http://api.flickr.com/', 'http://www.23hq.com/', '');
+
+  {@abtract(URI to which to send a user after uploading.)
+   Not used inside Rawflickr yet; added only as a convenience}
+  AfterUploadURI: array [stNone..stOther] of string =
+   ('', 'http://www.flickr.com/tools/uploader_edit.gne?ids=',
+    'http://www.23hq.com/tools/uploader_edit.gne?ids=', '');
+
+  {@abtract(URI to which to send a user after uploading.)
+   Not used inside Rawflickr yet; added only as a convenience.
+   These variant is easier to use if you keep the photoids in a TStrings or
+   TStringArray. The all you have to do to build the complete URI is:
+   @longcode(%
+   fullURI := Format(AfterUploadURIFmt[Flickr.Service.ServiceType],
+                    [IdsArray.CommaText]);
+   %)}
+  AfterUploadURIFmt: array [stNone..stOther] of string =
+   ('', 'http://www.flickr.com/tools/uploader_edit.gne?ids=%s',
+    'http://www.23hq.com/tools/uploader_edit.gne?ids=%s', '');
+
 
   {! Common parameters }{}
   EmptyID = '';    {<Semantic 'no id'}
   AnyId = EmptyID; {<Semantic 'anyone' id}
-  SelfId = EmptyID;{<Semantic 'owner' id}
+  SelfId = 'me';   {<Semantic 'owner' id}
 
   {@abstract(Default @link(TPageSet).)
    Means "let Flickr decide how many items to return."
@@ -1415,31 +1531,23 @@ begin
   end;
 end;
 
-{ Checks if a DateRange has useful values }
-(* LCM 20060628 - Not used any more
-function EmptyRange(DateRange: TDateRange): Boolean;
+{ Converts and adds a Date range to a request in MySQL or unix formats.
+  2009-04-01: Rebuilt to better cope w/the increasing # of methods using it}
 procedure AddDateMinMax(Params: TWebParams; Dates: TDateRange;
-                        DateKind: TDateKind);
-*)
-
-{ Converts and adds a Date range to a request in MySQL or unix formats }
-procedure AddDateMinMax(Params: TWebParams; Dates: TDateRange;
-                        DateKind: TDateKind);
-var kindStr, minStr, maxStr: String;
+                        DateKind: TDateKind; ParName: AnsiString);
+var minStr, maxStr: String;
 begin
   if Assigned(Dates) then begin
     minStr := '';
     maxStr := '';
     case DateKind of
-    dkTaken:  begin
-                kindStr := 'taken';
+    dkMySQL:  begin
                 with Dates do begin
                   if MinDate <> 0.0 then minStr := DateTimeToMySQL(MinDate);
                   if MaxDate <> 0.0 then maxStr := DateTimeToMySQL(MaxDate);
                 end;
               end;
-    dkPosted: begin
-                kindStr := 'upload';
+    dkUnix: begin
                 with Dates do begin
                   if MinDate <> 0.0 then minStr := IntToStr(
                                                      DateTimeToUnix(MinDate));
@@ -1448,8 +1556,8 @@ begin
                 end;
               end;
     end;
-    Params.Optional[Format('min_%s_date',[kindStr])] := minStr;
-    Params.Optional[Format('max_%s_date',[kindStr])] := maxStr;
+    Params.Optional[Format('min_%s_date',[ParName])] := minStr;
+    Params.Optional[Format('max_%s_date',[ParName])] := maxStr;
   end;
 end;
 
@@ -1558,15 +1666,16 @@ begin
       Required['api_key'] := Owner.ApiKey;
     end;
   end;
-  {---- This is what differs from SimpleCall ----}
-  if not Self.InheritsFrom(TAuth) then // TAuth is just FOR getting the Token
+  {---- This is all that changes compared to SimpleCall ----}
+  { TODO -oLCM : What about CheckToken?? }
+  if not Self.InheritsFrom(TAuth) then {< No Token yet if call's from TAuth }
     FRequest.Required['auth_token'] := Owner.Token;
-  {Next "if" added by LCM in 2006-12-05 to adapt for 23;
-   since 23 doesn't use signatures, sending it opens a security hole}
-  //if Owner.Service = stFlickr then {LCM 2006-12-05}
+  {ServiceType check, added 2006-12-05: Compat. 23hq;
+   23 doesn't use signatures; sending it opens a security hole.
+   Mod 2007-01-07, introduction of TWebService}
   if Owner.Service.ServiceType = stFlickr then {LCM: 2007-01-07}
     FRequest.Required['api_sig'] := GetSignature(FRequest, Owner.Secret);
-  {----------------------------------------------}
+  {--------------------------------------------------------}
   //url := FLICKR_BASE_REST + FRequest.URLEncoded;
   url := Owner.FService.GetEndpoint(epBaseREST) +
          '?' + FRequest.URLEncoded; {LCM: 2007-01-07}
@@ -1905,21 +2014,25 @@ end;
 {*    TFavorites = class(TRESTApi)    *}
 {**************************************}
 
-function TFavorites.getList(userId: String; extra: TXtraParams): String;
+function TFavorites.getList(userId: String; faveDate: TDateRange;
+                            extra: TXtraParams): String;
 begin
   FRequest.Initialize;
   FRequest.Optional['user_id'] := userId;
+  AddDateMinMax(FRequest, faveDate, dkUnix, 'fave');
   AddXtraPars(FRequest, extra);
   Result := SignedCall('flickr.favorites.getList')
 end;
 
-function TFavorites.getList(userId: String; extras: String='';
+function TFavorites.getList(userId: String; faveDate: TDateRange = nil;
+                            extras: String='';
                             perPage: Integer = 0; Page: Integer = 0): String;
 begin
   with FRequest do begin
     Initialize;
     Optional['user_id'] := userId;
     Optional['extras'] := extras;
+    AddDateMinMax(FRequest, faveDate, dkUnix, 'fave');
     if perpage > 0 then
       Optional['per_page'] := IntToStr(perpage);
     if page > 1 then
@@ -1928,12 +2041,14 @@ begin
   Result := SignedCall('flickr.favorites.getList')
 end;
 
-function TFavorites.getPublicList(userId: String; extra: TXtraParams): String;
+function TFavorites.getPublicList(userId: String; faveDate: TDateRange;
+                                  extra: TXtraParams): String;
 begin
   if userId = SelfId then
     userId := Owner.User.NSID;
   FRequest.Initialize;
   FRequest.Required['user_id'] := userId; // user_id is REQUIRED for this call
+  AddDateMinMax(FRequest, faveDate, dkUnix, 'fave');
   AddXtraPars(FRequest, extra);
   Result := SimpleCall('flickr.favorites.getPublicList');
 end;
@@ -1961,6 +2076,17 @@ end;
 {**************************************}
 {*    TGroups = class(TRESTApi)       *}
 {**************************************}
+
+function TGroups.GetMembers: TMembers;
+var Sign: TSignOption;
+begin
+  if not Assigned(FMembers) then begin
+    if FSignAll then Sign := sgnAlways
+                else Sign := sgnRequired;
+    FMembers := TMembers.Create(FOwner, Sign);
+  end;
+  Result := FMembers;
+end;
 
 function TGroups.GetPools: TPools;
 var Sign: TSignOption;
@@ -2009,13 +2135,38 @@ end;
 constructor TGroups.Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
 begin
   inherited;
+  FMembers := nil;
   FPools := nil;
 end;
 
 destructor TGroups.Destroy;
 begin
+  Members.Free;
   Pools.Free;
   inherited Destroy;
+end;
+
+
+{**************************************}
+{*    TMembers = class(TRESTApi)        *}
+{**************************************}
+
+function TMembers.getList(groupId, memberTypes: String; perPage,
+  page: Integer): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Required['group_id'] := groupId;
+    Optional['membertypes'] := memberTypes;
+    if perPage > 0 then Optional['per_page'] := IntToStr(perPage);
+    if page > 1    then Optional['page']     := IntToStr(page);
+  end;
+  Result := SignedCall('flickr.groups.members.getList');
+end;
+
+constructor TMembers.Create(AOwner: TFlickr; Sign: TSignOption);
+begin
+  inherited;
 end;
 
 
@@ -2104,6 +2255,89 @@ end;
 
 
 {**************************************}
+{*    TMachineTags = class(TRESTApi)  *}
+{**************************************}
+
+function TMachineTags.getNamespaces(predicate: String; perPage,
+  page: Integer): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Optional[predicate] := predicate;
+    if page > 1    then Optional['page']     := IntToStr(page);
+    if perPage > 0 then Optional['per_page'] := IntToStr(perPage);
+  end;
+  Result := SimpleCall('flickr.machinetags.getNamespaces');
+end;
+
+function TMachineTags.getPairs(namespace, predicate: String; perPage,
+  page: Integer): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Optional[namespace] := namespace;
+    Optional[predicate] := predicate;
+    if page > 1    then Optional['page']     := IntToStr(page);
+    if perPage > 0 then Optional['per_page'] := IntToStr(perPage);
+  end;
+  Result := SimpleCall('flickr.machinetags.getPairs');
+end;
+
+function TMachineTags.getPredicates(namespace: String; perPage,
+  page: Integer): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Optional[namespace] := namespace;
+    if page > 1    then Optional['page']     := IntToStr(page);
+    if perPage > 0 then Optional['per_page'] := IntToStr(perPage);
+  end;
+  Result := SimpleCall('flickr.machinetags.getPredicates');
+end;
+
+function TMachineTags.getValues(namespace, predicate: String; perPage,
+  page: Integer): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Required[namespace] := namespace;
+    Required[predicate] := predicate;
+    if page > 1    then Optional['page']     := IntToStr(page);
+    if perPage > 0 then Optional['per_page'] := IntToStr(perPage);
+  end;
+  Result := SimpleCall('flickr.machinetags.getValues');
+end;
+
+constructor TMachineTags.Create(AOwner: TFlickr; Sign: TSignOption);
+begin
+  inherited;
+end;
+
+
+{**************************************}
+{*    TPanda = class(TRESTApi)        *}
+{**************************************}
+
+function TPanda.getList: String;
+begin
+  FRequest.Initialize;
+  Result := SimpleCall('flickr.panda.getList');
+end;
+
+function TPanda.getPhotos(pandaName: String): String;
+begin
+  FRequest.Initialize;
+  FRequest.Required['panda_name'] := pandaName;
+  Result := SimpleCall('flickr.panda.getPhotos');
+end;
+
+constructor TPanda.Create(AOwner: TFlickr; Sign: TSignOption);
+begin
+  inherited;
+  Throttle := 0;
+end;
+
+{**************************************}
 {*    TPeople = class(TRESTApi)       *}
 {**************************************}
 
@@ -2188,8 +2422,8 @@ begin
       Optional['tags'] := tags;
       Optional['tag_mode'] := tagMode;
       Optional['text'] := text;
-      AddDateMinMax(FRequest, Uploaded, dkPosted);
-      AddDateMinMax(FRequest, Taken, dkTaken);
+      AddDateMinMax(FRequest, Uploaded, dkUnix, 'upload');
+      AddDateMinMax(FRequest, Taken, dkMySQL, 'taken');
       if license >= 0 then
         Optional['license'] := IntToStr(license);
       if privacy <> pfNone then  {@LCM 2006-07-04}
@@ -2227,8 +2461,8 @@ begin
       Optional['text'] := text;
     end;
     // Date terms
-    AddDateMinMax(FRequest, Uploaded, dkPosted);
-    AddDateMinMax(FRequest, Taken, dkTaken);
+    AddDateMinMax(FRequest, Uploaded, dkUnix, 'upload');
+    AddDateMinMax(FRequest, Taken, dkMySQL, 'taken');
     // Geo-location terms
     {LCM: 2008-06-29 - Mod bc the change of type of validFields and
                        additions in TGeoTerms}
@@ -2311,8 +2545,8 @@ function TPhotos.getCounts(Uploaded, Taken: array of TDateTime): String;
         for i := Low(Dates) to High(Dates) do
           case Kind of
           //dkPosted: Add(Format('%.10d',[DateTimeToUnix(Dates[i])]));
-          dkPosted: Add(IntToStr(DateTimeToUnix(Dates[i])));
-          dkTaken : Add(StringReplace(DateTimeToMySQL(Dates[i]),
+          dkUnix  : Add(IntToStr(DateTimeToUnix(Dates[i])));
+          dkMySQL : Add(StringReplace(DateTimeToMySQL(Dates[i]),
                                       ' ', '_', [rfReplaceAll]));
           end;
         Result := StringReplace(CommaText, '_', ' ', [rfReplaceAll]);
@@ -2323,8 +2557,8 @@ function TPhotos.getCounts(Uploaded, Taken: array of TDateTime): String;
 begin
   with FRequest do begin
     Initialize;
-    Optional['dates'] := CommaDates(Uploaded, dkPosted);
-    Optional['taken_dates'] := CommaDates(Taken, dkTaken);
+    Optional['dates'] := CommaDates(Uploaded, dkUnix);
+    Optional['taken_dates'] := CommaDates(Taken, dkMySQL);
   end;
   Result := SignedCall('flickr.photos.getCounts');
 end;
@@ -2369,8 +2603,8 @@ function TPhotos.getWithGeoData(Uploaded, Taken: TDateRange;
 begin
   with FRequest do begin
     Initialize;
-    AddDateMinMax(FRequest, Uploaded, dkPosted);
-    AddDateMinMax(FRequest, Taken, dkTaken);
+    AddDateMinMax(FRequest, Uploaded, dkUnix, 'upload');
+    AddDateMinMax(FRequest, Taken, dkMySQL, 'taken');
     if Privacy <> pfNone then
         Optional['privacy_filter'] := IntToStr(Ord(privacy));
     if sort <> soDefault then
@@ -2387,8 +2621,8 @@ function TPhotos.getWithoutGeoData(Uploaded, Taken: TDateRange;
 begin
   with FRequest do begin
     Initialize;
-    AddDateMinMax(FRequest, Uploaded, dkPosted);
-    AddDateMinMax(FRequest, Taken, dkTaken);
+    AddDateMinMax(FRequest, Uploaded, dkUnix, 'upload');
+    AddDateMinMax(FRequest, Taken, dkMySQL, 'taken');
     if Privacy <> pfNone then
         Optional['privacy_filter'] := IntToStr(Ord(privacy));
     if sort <> soDefault then
@@ -2611,12 +2845,13 @@ end;
 {*    TComments = class(TRESTApi)     *}
 {**************************************}
 
-function TComments.getList(entityId: String): String;
+function TComments.getList(entityId: String;
+                           commentDate: TDateRange = nil): String;
 begin
-  with FRequest do begin
-    Initialize;
-    Required[FBaseIdName + '_id'] := entityId;
-  end;
+ FRequest.Initialize;
+ FRequest.Required[FBaseIdName + '_id'] := entityId;
+ if Assigned(commentDate) then
+   AddDateMinMax(FRequest, commentDate, dkUnix, 'comment');
   Result := SignedCall('flickr.' + FBaseGroup + '.comments.getList')
 end;
 
@@ -2661,6 +2896,66 @@ end;
 {**************************************}
 {*    TGeoData = class(TRESTApi)      *}
 {**************************************}
+
+function TGeoData.getLocation(photoId: String): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Required['photo_id'] := photoId;
+  end;
+  Result := SimpleCall('flickr.photos.geo.getLocation')
+end;
+
+function TGeoData.setLocation(photoId: String; Latitude, Longitude: Double;
+                              Accuracy: TGeoAccuracy; Context: ShortInt): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Required['photo_id'] := photoId;
+    {LCM 2008-04-08 Replaced "Format('%.6f',[Lat/Lon]) by CoordToStr}
+    Required['lat'] := CoordToStr(Latitude);
+    Required['lon'] := CoordToStr(Longitude);
+    if Accuracy > 0 then
+      Optional['accuracy'] := IntToStr(Accuracy);
+    Optional['context'] := IntToStr(Context);
+  end;
+  Result := SignedCall('flickr.photos.geo.setLocation')
+end;
+
+function TGeoData.removeLocation(photoId: String): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Required['photo_id'] := photoId;
+  end;
+  Result := SignedCall('flickr.photos.geo.removeLocation')
+end;
+
+function TGeoData.batchCorrectLocation(Latitude, Longitude: Double;
+                       Accuracy: TGeoAccuracy; placeId, woeId: String): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Required['lat'] := CoordToStr(Latitude);
+    Required['lon'] := CoordToStr(Longitude);
+    Required['accuracy'] := IntToStr(Accuracy);
+    Optional['place_id'] := placeId;
+    Optional['woe_id'] := woeId;
+  end;
+  Result := SignedCall('flickr.photos.geo.batchCorrectLocation')
+end;
+
+function TGeoData.correctLocation(photoId, placeId, woeId: String): String;
+begin
+  with FRequest do begin
+    Initialize;
+    Required['photo_id'] := photoId;
+    Optional['place_id'] := placeId;
+    Optional['woe_id'] := woeId;
+  end;
+  Result := SignedCall('flickr.photos.geo.correctLocation')
+end;
+
 function TGeoData.getPerms(photoId: String): String;
 begin
   with FRequest do begin
@@ -2683,38 +2978,29 @@ begin
   Result := SignedCall('flickr.photos.geo.setPerms')
 end;
 
-function TGeoData.getLocation(photoId: String): String;
+function TGeoData.photosForLocation(Latitude, Longitude: Double;
+                           Accuracy: TGeoAccuracy; extra: TXtraParams): String;
 begin
   with FRequest do begin
     Initialize;
-    Required['photo_id'] := photoId;
-  end;
-  Result := SimpleCall('flickr.photos.geo.getLocation')
-end;
-
-function TGeoData.setLocation(photoId: String; Latitude, Longitude: Double;
-                              Accuracy: TGeoAccuracy): String;
-begin
-  with FRequest do begin
-    Initialize;
-    Required['photo_id'] := photoId;
-    {LCM 2008-04-08 Replaced "Format('%.6f',[Lat/Lon]) by CoordToStr}
     Required['lat'] := CoordToStr(Latitude);
     Required['lon'] := CoordToStr(Longitude);
-    Optional['accuracy'] := IntToStr(Accuracy);
+    if Accuracy > 0 then
+      Optional['accuracy'] := IntToStr(Accuracy);
   end;
-  Result := SignedCall('flickr.photos.geo.setLocation')
+  AddXtraPars(FRequest, extra);
+  Result := SignedCall('flickr.photos.geo.photosForLocation')
 end;
 
-function TGeoData.removeLocation(photoId: String): String;
+function TGeoData.setContext(photoId: String; Context: ShortInt): String;
 begin
   with FRequest do begin
     Initialize;
     Required['photo_id'] := photoId;
+    Required['context'] := IntToStr(Context);
   end;
-  Result := SignedCall('flickr.photos.geo.removeLocation')
+  Result := SignedCall('flickr.photos.geo.setContext')
 end;
-
 
 constructor TGeoData.Create(AOwner: TFlickr; Sign: TSignOption = sgnRequired);
 begin
@@ -3191,6 +3477,21 @@ end;
 {*    TTags = class(TRESTApi)         *}
 {**************************************}
 
+function TTags.getClusterPhotos(Tag, clusterId: String): String;
+begin
+  FRequest.Initialize;
+  FRequest.Required['tag'] := Tag;
+  FRequest.Required['cluster_id'] := clusterId;
+  Result := SimpleCall('flickr.tags.getClusterPhotos');
+end;
+
+function TTags.getClusters(Tag: String): String;
+begin
+  FRequest.Initialize;
+  FRequest.Required['tag'] := Tag;
+  Result := SimpleCall('flickr.tags.getClusters');
+end;
+
 function TTags.getHotList(period: String = ''; count: Integer = 0): String;
 begin
   FRequest.Initialize;
@@ -3570,6 +3871,20 @@ begin
   Result := FInteresting;
 end;
 
+function TFlickrEx.GetMachineTags: TMachineTags;
+begin
+  if FMachineTags = nil then
+    FMachineTags := TMachineTags.Create(Self, FSignOption);
+  Result := FMachineTags;
+end;
+
+function TFlickrEx.GetPanda: TPanda;
+begin
+  if FPanda = nil then
+    FPanda := TPanda.Create(Self, FSignOption);
+  Result := FPanda;
+end;
+
 function TFlickrEx.GetPeople: TPeople;
 begin
   if FPeople = nil then
@@ -3755,10 +4070,14 @@ begin
   FContacts  := nil;
   FFavorites := nil;
   FGroups    := nil;
+  FInteresting:= nil;
+  FMachineTags:= nil;
+  FPanda     := nil;
   FPeople    := nil;
   FPhotos    := nil;
   FPhotosets := nil;
   FPlaces    := nil;
+  FPrefs     := nil;
   FReflection:= nil;
   FTags      := nil;
   FTest      := nil;
@@ -3779,10 +4098,13 @@ begin
   FFavorites.Free;
   FGroups.Free;
   FInteresting.Free;
+  FMachineTags.Free;
+  FPanda.Free;
   FPeople.Free;
   FPhotos.Free;
   FPhotosets.Free;
   FPlaces.Free;
+  FPrefs.Free;
   FReflection.Free;
   FTags.Free;
   FTest.Free;

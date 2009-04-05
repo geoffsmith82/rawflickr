@@ -20,13 +20,14 @@
 { The Initial Developer of the Original Code is Luis Caballero Martínez.   }
 {                                                                          }
 { Portions created by the Initial Developer are                            }
-{ Copyright (C) 2009 Luis Caballero Martínez. All Rights Reserved.    }
+{ Copyright (C) 2009 Luis Caballero Martínez. All Rights Reserved.         }
 {                                                                          }
 {--------------------------------------------------------------------------}
 
 { Check this defines and modify them to suit. }
 {$DEFINE WC} {Local define to $INCLUDE my own API key & secret :-)}
 {$DEFINE ImgExt} {If set, use GIFImage and PNGImage}
+{$DEFINE UPTO23}
 
 unit Mainform;
 
@@ -45,38 +46,38 @@ type
     Bevel: TBevel;
     Image: TImage;
     MetaPanel: TPanel;
-    lbTitle: TLabel;
-    edTitle: TEdit;
-    lbDescription: TLabel;
-    edDescription: TMemo;
-    lbTags: TLabel;
-    edTags: TMemo;
-    gbVisibility: TGroupBox;
-    cbPrivate: TCheckBox;
-    cbFamily: TCheckBox;
-    cbFriends: TCheckBox;
-    lbGlobalHide: TLabel;
-    cbGlobalHide: TComboBox;
-    lbSafety: TLabel;
-    cbSafety: TComboBox;
-    lbContent: TLabel;
-    cbContent: TComboBox;
+      lbTitle: TLabel;
+      edTitle: TEdit;
+      lbDescription: TLabel;
+      edDescription: TMemo;
+      lbTags: TLabel;
+      edTags: TMemo;
+      gbVisibility: TGroupBox;
+        cbPrivate: TCheckBox;
+        cbFamily: TCheckBox;
+        cbFriends: TCheckBox;
+        lbGlobalHide: TLabel;
+        cbGlobalHide: TComboBox;
+      lbSafety: TLabel;
+      cbSafety: TComboBox;
+      lbContent: TLabel;
+      cbContent: TComboBox;
     ToolBar: TToolBar;
-    tbOpen: TToolButton;
-    tbUpload: TToolButton;
-    tbSep1: TToolButton;
-    tbSep2: TToolButton;
-    lbName: TLabel;
-    tbUser: TToolButton;
+      tbUser: TToolButton;
+      tbSep1: TToolButton;
+      tbOpen: TToolButton;
+      tbUpload: TToolButton;
+      tbSep2: TToolButton;
+      lbName: TLabel;
     ToolImages: TImageList;
-    	OpenDialog: TOpenDialog;
+    OpenDialog: TOpenDialog;
     procedure EditEnter(Sender: TObject);
     procedure EditExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure tbUserClick(Sender: TObject);
     procedure tbOpenClick(Sender: TObject);
     procedure tbUploadClick(Sender: TObject);
-    procedure tbUserClick(Sender: TObject);
   private
     { Private declarations }
     Flickr: TFlickrEx;
@@ -139,13 +140,20 @@ end;
 
 procedure TMain.FormCreate(Sender: TObject);
 begin
-  Flickr := TFlickrEx.Create(APIKEY, SECRET);
+{$IFDEF UPTO23}
+  Flickr := TFlickrEx.Create(APIKEY, SECRET, st23);
+  if (Flickr.ApiKey = '') then
+    ShowMessage(sNoKey);
+{$ELSE}
+  Flickr := TFlickrEx.Create(APIKEY, SECRET); {stFlickr is the default}
   if (Flickr.ApiKey = '') or (Flickr.Secret = '') then
     ShowMessage(sNoKey);
+{$ENDIF}
   { Not really a good idea unless your Delphi install has support for,
     at least, GIF and PNG images. }
   OpenDialog.Filter := GraphicFilter(TGraphic);
   tbUpload.Enabled := False;
+  cbGlobalHide.ItemIndex := 0;
   cbSafety.ItemIndex  := 0;
   cbContent.ItemIndex := 0;
 end;
@@ -165,6 +173,40 @@ end;
 procedure TMain.EditExit(Sender: TObject);
 begin
   TEdit(Sender).Color := clWindow;
+end;
+
+{ This procedure shows a simple way to authenticate a use regardless of
+  whether she has authorized the application. }
+procedure TMain.tbUserClick(Sender: TObject);
+var f: TextFile;
+    tmpToken: String;
+begin
+  { First, we look for a previously obtained token, if any. }
+  AssignFile(f, ExtractFilePath(Application.ExeName) + 'user.txt');
+  try
+    try
+      Reset(f);
+      ReadLn(f, tmpToken);
+    except
+      { Of course, real apps should manage exceptions better; here we just
+        assume that there was no "user.txt" and, thence, no token }
+      Rewrite(f);
+      tmpToken := ''
+    end;
+    { Token or no, we must authenticate; fortunately (for you :) the whole
+      process is managed is managed with just ONE call.}
+    if Flickr.Authorize('write', tmpToken) then begin
+      lbName.Caption := 'Hi, ' + Flickr.User.UserName + '!';
+      { This is a extremely simple example so we just store the token in a
+        single-line file: the bare minimum}
+      Rewrite(f);
+      Writeln(f, Flickr.Token);
+    end else
+      {Authorize failed! Let's raise the exception to know why.}
+      Flickr.Auth.CheckError(Flickr.Auth.LastResponse);
+  finally
+    CloseFile(f);
+  end;
 end;
 
 procedure TMain.tbOpenClick(Sender: TObject);
@@ -214,7 +256,8 @@ begin
         check if all the data arrived OK and edit it if need be.
         To form the URI to which to send the user we would now parse rsp
         to get the photoid and launch a browser to:
-        http://www.flickr.com/tools/uploader_edit.gne?ids=9999999
+        http://www.flickr.com/tools/uploader_edit.gne?ids=9999999 or
+        http://www.23hq.com/tools/uploader_edit.gne?ids=9999999        
         where 9999999 is the photoid we have just extracted from rsp.
       }
     except
@@ -227,41 +270,6 @@ begin
   end;
   ShowMessage(rsp);
   Flickr.Photos.CheckError(rsp);
-end;
-
-{ This procedure shows a simple way to authenticate a use regardless of
-  whether she has authorized the application. }
-procedure TMain.tbUserClick(Sender: TObject);
-var f: TextFile;
-    tmpToken: String;
-begin
-  { First, we look for a previously obtained token, if any. }
-  AssignFile(f, ExtractFilePath(Application.ExeName) + 'user.txt');
-  try
-    try
-      Reset(f);
-      ReadLn(f, tmpToken);
-    except
-      { Of course, real apps should manage exceptions better; here we just
-        assume that there was no "user.txt" and, thence, no token }
-      Rewrite(f);
-      tmpToken := ''
-    end;
-    { Token or no, we must authenticate; fortunately (for you :) the whole
-      process is managed is managed with just ONE call.}
-    if Flickr.Authorize('write', tmpToken) then begin
-      lbName.Caption := 'Hi, ' + Flickr.User.UserName + '!';
-      { This is a extremely simple example so we just store the token in a
-        single-line file: the bare minimum}
-      Rewrite(f);
-      Writeln(f, Flickr.Token);
-    end else
-      {Authorize failed! Let's raise the exception to know why.}
-      Flickr.Auth.CheckError(Flickr.Auth.LastResponse);
-  finally
-    CloseFile(f);
-  end;
-
 end;
 
 end.
