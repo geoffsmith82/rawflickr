@@ -4,6 +4,11 @@
 
 This example is a fully functional--albeit rough--demo showing how to authenticate an application and upload an image to Flickr. 
 
+== License ==
+
+This example program is subject to the Mozilla Public License Version 1.1 (the "License");
+You can obtain a copy of the license at http://www.mozilla.org/MPL/
+
 == Installation ==
 
 No installation is needed, other than dumping the files in your directory of choice, provided you already installed Rawflickr.

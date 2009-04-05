@@ -5,8 +5,8 @@
     Strings Extension - String Array Objects for Delphi
     Copyright 1998-2006 by Luis Caballero Martínez
 
-    Lightweight replacement of TStrings & TStringsList and miscelaneous
-	string handling routines (rawflickr release).
+    Lightweight replacement of TStrings & TStringsList and
+    miscelaneous string handling routines (rawflickr release).
 	
 ***************************** BEGIN LICENSE BLOCK ***********************
   Version: MPL 1.1

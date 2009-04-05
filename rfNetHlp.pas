@@ -1,17 +1,39 @@
 { $Id$ }
-(**********************************************************
- *                                                        *
- *    Internet Helper for RawFlickr, v1.04                *
- *    Copyright 2005,2006 Luis Caballero Martínez         *
- *    All Rights Reserved                                 *
- *                                                        *
- *    Credits:                                            *
- *    - Internet Direct (Indy) version 9.0                *
- *          http://www.indyproject.org/                   *
- *    - Synapse Release 36                                *
- *          http://www.ararat.cz/synapse/                 *
- *                                                        *
- **********************************************************)
+{************************************************************************
+
+    Internet Helper for RawFlickr, v1.04
+    Copyright 2005,2008 Luis Caballero Martínez
+
+    Network access extensions for Rawflickr.
+
+    This unit was designed to use and interact with:
+    - Internet Direct (Indy) version 9.0
+          http://www.indyproject.org/
+    - Synapse Release 36
+          http://www.ararat.cz/synapse/
+
+***************************** BEGIN LICENSE BLOCK ***********************
+  Version: MPL 1.1
+
+  The contents of this archive are subject to the Mozilla Public License
+  Version 1.1 (the "License"); you may not use this file except in
+  compliance with the License. You may obtain a copy of the License
+  at http://www.mozilla.org/MPL/
+
+  Software distributed under the License is distributed on an "AS IS"
+  basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See
+  the License for the specific language governing rights and limitations
+  under the License.
+
+  The Original Code is DateTimeExt.pas, first released in 1998
+
+  The Initial Developer of the Original Code is Luis Caballero Martínez.
+
+  Portions created by the Initial Developer are
+  copyright (C) 2005,2008 Luis Caballero Martínez. All Rights Reserved.
+
+*************************** END LICENSE BLOCK ***************************}
+
 {@abstract(Internet Helper for Rawflickr)
  @author(Luis Caballero <luiscamar@users.sourceforge.net>)
  @created(2005-03)
@@ -243,3 +265,4 @@ begin
 end;
 
 end.
+
